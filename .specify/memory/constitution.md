@@ -1,22 +1,15 @@
 <!--
-- Version change: 2.0.0 -> 3.0.0 (Major overhaul: Prime Directive, Open Source, BDD-First)
+- Version change: 3.0.0 -> 3.1.0 (SDD-First clarification)
 - List of modified principles:
-    - I: Portal Scope -> I: The Prime Directive (Economic Constraint)
-    - II: BDD-First Development -> II: Evidence-First Development (BDD → TDD)
-    - III: Playwright Testing Standard -> III: Quality Gates
-    - IV: Zero-Cost Baseline -> Merged into Prime Directive
-- Added sections:
-    - IV: Open Source Values
-    - V: Portal-Specific Guidelines
-    - VI: Agentic Guidance
+    - II: Evidence-First Development -> II: Specification-Driven Development (SDD → BDD → TDD)
+- Added sections: None
 - Removed sections: None
-- Templates requiring updates:
-    - .specify/templates/spec-template.md: ⚠ pending (if exists)
+- Templates requiring updates: None
 - Follow-up TODOs: None
 -->
 # Vindicta Portal Constitution
 
-**Version**: 3.0.0 | **Ratified**: 2026-02-01 | **Last Amended**: 2026-02-01
+**Version**: 3.1.0 | **Ratified**: 2026-02-01 | **Last Amended**: 2026-02-01
 
 ## Preamble
 
@@ -32,22 +25,23 @@ The Vindicta Portal MUST operate at **zero standing monthly cost**. All infrastr
 
 - **Firebase Hosting**: Spark Plan (10GB/month bandwidth, 360MB storage)
 - **GCP Project**: `vindicta-warhammer` ONLY. No other billing accounts permitted.
-- **Third-Party Services**: Free tiers only (Appzi, Sleekplan, etc.)
+- **Third-Party Services**: Free tiers only (Appzi, Sleekplan, FormSubmit, etc.)
 
 > Any deviation from the zero-cost baseline requires explicit approval from the Supreme Architect (User).
 
-### II. Evidence-First Development (BDD → TDD)
+### II. Specification-Driven Development (SDD → BDD → TDD)
 
-All development MUST follow the Evidence-First methodology:
+All development MUST follow this strict order of operations:
 
-1. **Behavioral expectations (BDD) MUST be defined and confirmed failing FIRST**
-2. Unit tests (TDD) are written AFTER behavioral tests exist
-3. Implementation code is written ONLY after tests exist
-4. A "Green" test suite is the only passport for code to enter the codebase
+1. **Specification (SDD)**: A written spec defining the feature MUST exist FIRST
+2. **Behavioral Tests (BDD)**: Gherkin-style expectations MUST be defined and confirmed failing
+3. **Unit Tests (TDD)**: Granular tests written AFTER behavioral tests exist
+4. **Implementation**: Code written ONLY after tests exist
+5. **Verification**: A "Green" test suite is the only passport for code to enter the codebase
 
 **Order of Operations**: Specification → BDD Tests → TDD Tests → Implementation → Verification
 
-No code shall be merged without corresponding Playwright tests that verify the expected behavior.
+> No code shall be merged without a defining specification AND corresponding Playwright tests.
 
 ### III. Quality Gates
 

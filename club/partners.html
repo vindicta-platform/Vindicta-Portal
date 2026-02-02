@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Community Partners | Team Vindicta</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <noscript>
+        <link href="assets/css/noscript.css" rel="stylesheet" />
+    </noscript>
+    <style>
+        body {
+            background-color: #1a1a2e !important;
+        }
+
+        #club-nav {
+            background: rgba(15, 15, 30, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #club-nav .logo {
+            color: #FFD700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #club-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        #club-nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #club-nav a:hover,
+        #club-nav a.active {
+            color: #FFD700;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(30, 30, 50, 1) 0%, rgba(26, 26, 46, 1) 100%);
+        }
+
+        .page-header h1 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .partner-card {
+            background: rgba(30, 30, 50, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .partner-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-name {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-desc {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-link {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            color: #FFD700;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .partner-link:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        .rss-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(20, 20, 40, 0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .rss-section h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .rss-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .rss-item:last-child {
+            border-bottom: none;
+        }
+
+        .rss-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .rss-item a:hover {
+            color: #FFD700;
+        }
+
+        .rss-meta {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Club Navigation -->
+    <nav id="club-nav">
+        <a class="logo" href="index.html">⚔️ VINDICTA</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="partners.html" class="active">Partners</a></li>
+            <li><a href="join.html">Join Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Community Partners</h1>
+        <p>The best content creators and communities in competitive 40k</p>
+    </header>
+
+    <!-- Partners Content -->
+    <div class="content-wrapper">
+
+        <div class="partners-grid">
+            <!-- Team USA 40k -->
+            <div class="partner-card">
+                <div class="partner-logo">🇺🇸</div>
+                <h3 class="partner-name">Team USA 40k</h3>
+                <p class="partner-desc">The official US national team for Warhammer 40k. Following our journey to the
+                    WTC.</p>
+                <a class="partner-link" href="https://teamusa40k.com" target="_blank">Visit Site →</a>
+            </div>
+
+            <!-- Stat Check -->
+            <div class="partner-card">
+                <div class="partner-logo">📊</div>
+                <h3 class="partner-name">Stat Check</h3>
+                <p class="partner-desc">Tournament data, meta analysis, and competitive statistics for the 40k scene.
+                </p>
+                <a class="partner-link" href="https://www.stat-check.com" target="_blank">Visit Site →</a>
+            </div>
+
+            <!-- Art of War -->
+            <div class="partner-card">
+                <div class="partner-logo">🎯</div>
+                <h3 class="partner-name">Art of War</h3>
+                <p class="partner-desc">Premium coaching and content from top competitive players. Level up your game.
+                </p>
+                <a class="partner-link" href="https://theartofwar40k.com" target="_blank">Visit Site →</a>
+            </div>
+        </div>
+
+        <!-- Latest Content Section -->
+        <section class="rss-section">
+            <h2>📰 Latest from the Community</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">Stay up to date with the latest competitive 40k content</p>
+
+            <div id="rss-feed">
+                <!-- RSS content would be loaded here via JavaScript -->
+                <div class="rss-item">
+                    <a href="https://www.stat-check.com" target="_blank">Weekly Meta Report: Top Factions in January
+                        2026</a>
+                    <div class="rss-meta">Stat Check • 2 days ago</div>
+                </div>
+                <div class="rss-item">
+                    <a href="https://theartofwar40k.com" target="_blank">Mastering the Movement Phase: Advanced
+                        Tactics</a>
+                    <div class="rss-meta">Art of War • 3 days ago</div>
+                </div>
+                <div class="rss-item">
+                    <a href="https://teamusa40k.com" target="_blank">Team USA Roster Announced for WTC 2026</a>
+                    <div class="rss-meta">Team USA 40k • 1 week ago</div>
+                </div>
+            </div>
+
+            <p style="color: #555; font-size: 0.85rem; margin-top: 1.5rem;">
+                <em>Content updates are curated manually. Want to be featured? <a href="join.html"
+                        style="color: #FFD700;">Contact us</a>.</em>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid rgba(255, 215, 0, 0.1);">
+        <p>© 2026 Team Vindicta | Long Island, NY</p>
+        <p><a href="https://discord.gg/vindicta" target="_blank" style="color: #FFD700;">Join our Discord</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

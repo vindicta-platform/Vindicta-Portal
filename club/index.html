@@ -68,13 +68,67 @@
         h2.major {
             color: #FFD700;
         }
+
+        #club-nav {
+            background: rgba(15, 15, 30, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        #club-nav .logo {
+            color: #FFD700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #club-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        #club-nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #club-nav a:hover,
+        #club-nav a.active {
+            color: #FFD700;
+        }
+
+        #banner {
+            padding-top: 80px !important;
+        }
     </style>
 </head>
 
 <body class="is-preload">
 
-    <!-- Header (Injected by nexus-ui.js) -->
-    <header id="portal-header"></header>
+    <!-- Club Navigation -->
+    <nav id="club-nav">
+        <a class="logo" href="index.html">⚔️ VINDICTA</a>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="join.html">Join Us</a></li>
+        </ul>
+    </nav>
 
     <!-- Banner -->
     <section id="banner">

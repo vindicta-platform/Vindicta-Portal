@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Upcoming Events | Team Vindicta</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <noscript>
+        <link href="assets/css/noscript.css" rel="stylesheet" />
+    </noscript>
+    <style>
+        body {
+            background-color: #1a1a2e !important;
+        }
+
+        .event-card {
+            background: rgba(30, 30, 50, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .event-date {
+            color: #FFD700;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .event-title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .event-location {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .event-type {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        #club-nav {
+            background: rgba(15, 15, 30, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #club-nav .logo {
+            color: #FFD700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #club-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        #club-nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #club-nav a:hover,
+        #club-nav a.active {
+            color: #FFD700;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(30, 30, 50, 1) 0%, rgba(26, 26, 46, 1) 100%);
+        }
+
+        .page-header h1 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .no-events {
+            text-align: center;
+            color: #666;
+            padding: 3rem;
+            border: 2px dashed rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Club Navigation -->
+    <nav id="club-nav">
+        <a class="logo" href="index.html">⚔️ VINDICTA</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html" class="active">Events</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="join.html">Join Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Upcoming Events</h1>
+        <p>Tournaments, game nights, and community gatherings</p>
+    </header>
+
+    <!-- Events Content -->
+    <div class="content-wrapper">
+
+        <!-- Upcoming Event -->
+        <article class="event-card">
+            <span class="event-date">📅 February 15, 2026</span>
+            <h2 class="event-title">Monthly RTT - February Showdown</h2>
+            <p class="event-location">📍 Battle Bunker, Long Island NY</p>
+            <p>32-player RTT with prizes. 2000 points, WTC format. Registration opens Feb 1st.</p>
+            <span class="event-type">🏆 Tournament</span>
+        </article>
+
+        <!-- Game Night -->
+        <article class="event-card">
+            <span class="event-date">📅 Every Thursday</span>
+            <h2 class="event-title">Thursday Night Throwdown</h2>
+            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
+            <p>Casual games and practice matches. All skill levels welcome. Bring your army!</p>
+            <span class="event-type">🎲 Game Night</span>
+        </article>
+
+        <!-- Painting Session -->
+        <article class="event-card">
+            <span class="event-date">📅 February 22, 2026</span>
+            <h2 class="event-title">Painting Workshop - Weathering Techniques</h2>
+            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
+            <p>Learn advanced weathering techniques. Bring WIP models and supplies provided.</p>
+            <span class="event-type">🎨 Hobby</span>
+        </article>
+
+        <!-- Major Tournament -->
+        <article class="event-card">
+            <span class="event-date">📅 March 8-9, 2026</span>
+            <h2 class="event-title">Vindicta GT 2026</h2>
+            <p class="event-location">📍 Convention Center, Long Island NY</p>
+            <p>Our flagship 2-day GT! 64 players, cash prizes, and fully catered. Early bird discounts available.</p>
+            <span class="event-type">🏆 Major Tournament</span>
+        </article>
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid rgba(255, 215, 0, 0.1);">
+        <p>© 2026 Team Vindicta | Long Island, NY</p>
+        <p><a href="https://discord.gg/vindicta" target="_blank" style="color: #FFD700;">Join our Discord</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

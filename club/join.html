@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Join Team Vindicta | Request Discord Access</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <noscript>
+        <link href="assets/css/noscript.css" rel="stylesheet" />
+    </noscript>
+    <style>
+        body {
+            background-color: #1a1a2e !important;
+        }
+
+        #club-nav {
+            background: rgba(15, 15, 30, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #club-nav .logo {
+            color: #FFD700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #club-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        #club-nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #club-nav a:hover,
+        #club-nav a.active {
+            color: #FFD700;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(30, 30, 50, 1) 0%, rgba(26, 26, 46, 1) 100%);
+        }
+
+        .page-header h1 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .content-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .join-form {
+            background: rgba(30, 30, 50, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 15, 30, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .discord-info {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 8px;
+        }
+
+        .discord-info h3 {
+            color: #5865F2;
+            margin-bottom: 0.5rem;
+        }
+
+        .discord-info p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .requirements {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(20, 20, 40, 0.5);
+            border-radius: 8px;
+        }
+
+        .requirements h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .requirements ul {
+            color: #888;
+            padding-left: 1.5rem;
+        }
+
+        .requirements li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Club Navigation -->
+    <nav id="club-nav">
+        <a class="logo" href="index.html">⚔️ VINDICTA</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="join.html" class="active">Join Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Join Team Vindicta</h1>
+        <p>Request access to our Discord community</p>
+    </header>
+
+    <!-- Form Content -->
+    <div class="content-wrapper">
+
+        <form class="join-form" action="https://formsubmit.co/bfoxtrotfarm@gmail.com" method="POST">
+            <!-- FormSubmit configuration -->
+            <input type="hidden" name="_subject" value="New Vindicta Discord Join Request">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_next" value="https://vindicta-warhammer.web.app/club/join.html?submitted=true">
+
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="What should we call you?">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="faction">Primary Faction</label>
+                <select id="faction" name="faction">
+                    <option value="">Select your main army...</option>
+                    <option value="space-marines">Space Marines</option>
+                    <option value="chaos-marines">Chaos Space Marines</option>
+                    <option value="aeldari">Aeldari</option>
+                    <option value="drukhari">Drukhari</option>
+                    <option value="orks">Orks</option>
+                    <option value="tyranids">Tyranids</option>
+                    <option value="necrons">Necrons</option>
+                    <option value="tau">T'au Empire</option>
+                    <option value="imperial-guard">Astra Militarum</option>
+                    <option value="custodes">Adeptus Custodes</option>
+                    <option value="sisters">Adepta Sororitas</option>
+                    <option value="knights">Imperial Knights</option>
+                    <option value="chaos-knights">Chaos Knights</option>
+                    <option value="daemons">Chaos Daemons</option>
+                    <option value="deathguard">Death Guard</option>
+                    <option value="thousandsons">Thousand Sons</option>
+                    <option value="worldeaters">World Eaters</option>
+                    <option value="gsc">Genestealer Cults</option>
+                    <option value="admech">Adeptus Mechanicus</option>
+                    <option value="greyknight">Grey Knights</option>
+                    <option value="deathwatch">Deathwatch</option>
+                    <option value="votann">Leagues of Votann</option>
+                    <option value="multiple">Multiple Armies</option>
+                    <option value="new">New to the hobby</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experience Level</label>
+                <select id="experience" name="experience">
+                    <option value="new">New to 40k</option>
+                    <option value="casual">Casual Player</option>
+                    <option value="competitive">Competitive Player</option>
+                    <option value="tournament">Active Tournament Player</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Tell us about yourself</label>
+                <textarea id="message" name="message"
+                    placeholder="What brings you to Vindicta? Any tournament experience? What are you looking for in a club?"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">🎮 Request Discord Access</button>
+        </form>
+
+        <!-- Discord Info -->
+        <div class="discord-info">
+            <h3>🎮 Why Discord?</h3>
+            <p>Our Discord is the hub for all club activities—game scheduling, list discussion, painting WIPs, and
+                tournament coordination. We keep it invite-only to maintain a positive community.</p>
+        </div>
+
+        <!-- Requirements -->
+        <div class="requirements">
+            <h3>What We're Looking For</h3>
+            <ul>
+                <li>Positive attitude and good sportsmanship</li>
+                <li>Interest in competitive or casual 40k</li>
+                <li>Located in or near Long Island, NY (or willing to travel for events)</li>
+                <li>Willingness to participate in club activities</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid rgba(255, 215, 0, 0.1);">
+        <p>© 2026 Team Vindicta | Long Island, NY</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Check for form submission -->
+    <script>
+        if (window.location.search.includes('submitted=true')) {
+            document.querySelector('.join-form').innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <h2 style="color: #FFD700;">🎉 Request Submitted!</h2>
+                    <p style="color: #888; margin-top: 1rem;">Thanks for your interest in Team Vindicta! We'll review your request and send a Discord invite to your email within 24-48 hours.</p>
+                    <a href="index.html" style="display: inline-block; margin-top: 1.5rem; color: #FFD700;">← Return to Club Home</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
