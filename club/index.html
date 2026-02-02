@@ -1,124 +1,423 @@
 <!DOCTYPE HTML>
-<!--
-	Solid State by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html lang="en">
+<html lang="en" class="club-theme">
 
 <head>
-    <title>Vindicta Warhammer Club - Home Page</title>
+    <title>Team Vindicta | Long Island Warhammer 40K Club</title>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="assets/css/main.css" rel="stylesheet" />
-    <noscript>
-        <link href="assets/css/noscript.css" rel="stylesheet" />
-    </noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description"
+        content="Team Vindicta - A competitive Warhammer 40,000 club based in Long Island, NY. Join our community of passionate players." />
+
+    <!-- Design System -->
+    <link href="../assets/css/design-system.css" rel="stylesheet" />
+
     <style>
-        #banner {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('images/banner.jpg') !important;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-
-        #banner .logo .icon {
-            color: #FFD700 !important;
-            border-color: #FFD700 !important;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        #banner h2 {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            letter-spacing: -2px;
-            text-shadow: 0 0 30px rgba(255, 191, 0, 0.3);
-        }
-
-        .wrapper.spotlight .inner {
-            background: rgba(15, 15, 15, 0.85) !important;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .wrapper.spotlight .image img {
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            transition: border-color 0.3s ease;
-        }
-
-        .wrapper.spotlight .image img:hover {
-            border-color: rgba(255, 215, 0, 0.6);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #0a0a0a !important;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
 
-        a.special {
-            border-color: #FFD700 !important;
-            color: #FFD700 !important;
-        }
-
-        a.special:hover {
-            background-color: #FFD700 !important;
-            color: #000 !important;
-        }
-
-        h2.major {
-            color: #FFD700;
-        }
-
-        #club-nav {
-            background: rgba(15, 15, 30, 0.95);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .club-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: var(--z-sticky);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        #club-nav .logo {
-            color: #FFD700;
-            font-size: 1.5rem;
-            font-weight: bold;
+        .club-nav .logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        #club-nav ul {
+        .club-nav .logo:hover {
+            text-shadow: var(--vindicta-gold-glow);
+        }
+
+        .club-nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
-            margin: 0;
-            padding: 0;
         }
 
-        #club-nav a {
-            color: #ccc;
+        .club-nav a {
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: color var(--transition-normal);
+            position: relative;
         }
 
-        #club-nav a:hover,
-        #club-nav a.active {
-            color: #FFD700;
+        .club-nav a:hover,
+        .club-nav a.active {
+            color: var(--vindicta-gold);
         }
 
-        #banner {
-            padding-top: 80px !important;
+        .club-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--vindicta-gold);
+            border-radius: 2px;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(180deg, rgba(26, 26, 46, 0.3) 0%, rgba(26, 26, 46, 0.95) 100%),
+                url('images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--accent);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--vindicta-gold) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .hero-scroll .arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--vindicta-gold);
+            border-bottom: 2px solid var(--vindicta-gold);
+            transform: rotate(45deg);
+        }
+
+        /* ============================================
+           FEATURES SECTION
+           ============================================ */
+        .features {
+            padding: var(--space-2xl) var(--space-lg);
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--vindicta-gold);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--vindicta-gold), var(--accent));
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--vindicta-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--vindicta-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap var(--transition-normal);
+        }
+
+        .feature-link:hover {
+            gap: 1rem;
+        }
+
+        /* ============================================
+           STATS SECTION
+           ============================================ */
+        .stats {
+            padding: var(--space-xl) var(--space-lg);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: var(--space-lg);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+        .cta {
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--vindicta-gold);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .club-nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
-<body class="is-preload">
+<body>
 
-    <!-- Club Navigation -->
-    <nav id="club-nav">
+    <!-- Mesh Background -->
+    <div class="mesh-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="club-nav">
         <a class="logo" href="index.html">⚔️ VINDICTA</a>
         <ul>
             <li><a href="index.html" class="active">Home</a></li>
@@ -130,104 +429,98 @@
         </ul>
     </nav>
 
-    <!-- Banner -->
-    <section id="banner">
-        <div class="inner">
-            <div class="logo"><span class="icon fa-gem"></span></div>
-            <h2>This is Team Vindicta</h2>
-            <p>A Long Island based Warhammer 40k competitive team based in NY.</p>
-            <p>
-                Started from the idea of invigorating the stagnant Long Island/NY Warhammer competitive scene, Vindicta
-                has blazed trails onto the Warhammer Tournament Realm. With our roster ever growing, and our ideals as
-                rock-solid as day one, Vindicta hopes to bring honest and fierce competitive gameplay to the whole of
-                the Warhammer 40k scene.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">🎲 Long Island, NY</span>
+            <h1>Team Vindicta</h1>
+            <p>A brotherhood forged in the fires of competition. We're a Warhammer 40,000 club dedicated to fierce
+                gameplay, honest competition, and growing the community.</p>
+            <div class="hero-buttons">
+                <a href="join.html" class="btn btn-primary">Join the Brotherhood</a>
+                <a href="events.html" class="btn btn-outline">Upcoming Events</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <div class="arrow"></div>
         </div>
     </section>
 
-    <!-- Wrapper -->
-    <section id="wrapper">
-
-        <!-- One -->
-        <section class="wrapper spotlight style1" id="one">
-            <div class="inner">
-                <a class="image" href="about.html"><img alt="" src="images/pic01.jpg" /></a>
-                <div class="content">
-                    <h2 class="major">Origins</h2>
-                    <p>Born amongst the uncertainty of COVID-19, Brandon, Anthony, and Joseph set upon game after game
-                        as the exterminatus outside would not allow for casual gaming. There, in that holy sanctum,
-                        there was only grind. After months of cheese gratering our faces off each other’s armies, a
-                        decision was made. That this fellowship was to be codified in signature and blood, and thus
-                        Vindicta was born.</p>
-                    <a class="special" href="about.html">Learn more</a>
-                </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2>What We Offer</h2>
+            <p>More than just games—we're building a community of passionate players</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚔️</div>
+                <h3>Competitive Play</h3>
+                <p>Regular RTTs, practice games, and preparation for major tournaments. Sharpen your skills with the
+                    best.</p>
+                <a href="events.html" class="feature-link">View Events →</a>
             </div>
-        </section>
-
-        <!-- Two -->
-        <section class="wrapper alt spotlight style2" id="two">
-            <div class="inner">
-                <a class="image" href="team.html"><img alt="" src="images/pic02.jpg" /></a>
-                <div class="content">
-                    <h2 class="major">Team Members</h2>
-                    <p>This is some text about our team members</p>
-                    <a class="special" href="team.html">Learn more</a>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Hobby Excellence</h3>
+                <p>Painting workshops, army showcases, and hobby motivation. We celebrate the art of the hobby.</p>
+                <a href="team.html" class="feature-link">Meet the Team →</a>
             </div>
-        </section>
-
-        <!--							<section id="four" class="wrapper alt style1">-->
-        <!--								<div class="inner">-->
-        <!--									<h2 class="major">News and Highlights</h2>-->
-        <!--									<p>Some Recent News, highlights, shameless plugs and more...</p>-->
-        <!--									<section class="features">-->
-        <!--										<article>-->
-        <!--											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>-->
-        <!--											<h3 class="major">Sed feugiat lorem</h3>-->
-        <!--											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>-->
-        <!--											<a href="#" class="special">Learn more</a>-->
-        <!--										</article>-->
-        <!--										<article>-->
-        <!--											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>-->
-        <!--											<h3 class="major">Nisl placerat</h3>-->
-        <!--											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>-->
-        <!--											<a href="#" class="special">Learn more</a>-->
-        <!--										</article>-->
-        <!--										<article>-->
-        <!--											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>-->
-        <!--											<h3 class="major">Ante fermentum</h3>-->
-        <!--											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>-->
-        <!--											<a href="#" class="special">Learn more</a>-->
-        <!--										</article>-->
-        <!--										<article>-->
-        <!--											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>-->
-        <!--											<h3 class="major">Fusce consequat</h3>-->
-        <!--											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>-->
-        <!--											<a href="#" class="special">Learn more</a>-->
-        <!--										</article>-->
-        <!--									</section>-->
-        <!--									<ul class="actions">-->
-        <!--										<li><a href="#" class="button">Browse All</a></li>-->
-        <!--									</ul>-->
-        <!--								</div>-->
-        <!--							</section>-->
-
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Community First</h3>
+                <p>Active Discord, weekly game nights, and a welcoming atmosphere for players of all skill levels.</p>
+                <a href="join.html" class="feature-link">Join Us →</a>
+            </div>
+        </div>
     </section>
 
-    <!-- Footer (Injected by nexus-ui.js) -->
-    <footer id="portal-footer"></footer>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Events Hosted</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2020</div>
+                <div class="stat-label">Founded</div>
+            </div>
+        </div>
+    </section>
 
-    <script src="../platform/js/portal-ui.js"></script>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Join the Fight?</h2>
+            <p>Whether you're a seasoned veteran or just starting your journey, there's a place for you in Team
+                Vindicta.</p>
+            <a href="join.html" class="btn btn-primary">Request Discord Access</a>
+        </div>
+    </section>
 
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">⚔️ VINDICTA</div>
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="team.html">Team</a>
+            <a href="events.html">Events</a>
+            <a href="partners.html">Partners</a>
+            <a href="join.html">Join</a>
+        </div>
+        <p class="footer-copyright">© 2026 Team Vindicta | Long Island, NY</p>
+    </footer>
 
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"
-        type="text/javascript"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

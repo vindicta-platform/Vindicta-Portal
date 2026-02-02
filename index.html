@@ -4,99 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Vindicta Portal - The Apex of Competitive Tabletop Wargaming. Access the Club or Platform.">
     <title>VINDICTA | The Apex of Competitive Tabletop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Bebas+Neue&display=swap"
-        rel="stylesheet">
+
+    <!-- Design System -->
+    <link href="assets/css/design-system.css" rel="stylesheet">
+
     <style>
-        :root {
-            --gold: #FFD700;
-            --amber: #FFBF00;
-            --dark-gray: #121212;
-            --deep-black: #080808;
-            --glass: rgba(20, 20, 20, 0.8);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--deep-black);
+            font-family: var(--font-display);
+            background: #050508;
             color: white;
-            overflow-x: hidden;
-            margin: 0;
+            overflow: hidden;
             height: 100vh;
         }
 
-        .hero-bg {
+        /* Animated Background */
+        .bg-layer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('static/images/hero_bg.png') no-repeat center center/cover;
-            filter: brightness(0.4) contrast(1.1);
-            z-index: -1;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 0;
         }
 
-        .accent-gradient {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .split-pane {
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: blur(0px);
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .split-pane:hover {
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(4px);
-            border-color: var(--amber);
-        }
-
-        .pane-club:hover~.hero-bg {
-            transform: scale(1.05) translateX(2%);
-        }
-
-        .pane-platform:hover~.hero-bg {
-            transform: scale(1.05) translateX(-2%);
-        }
-
-        .btn-premium {
-            position: relative;
-            padding: 12px 32px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            overflow: hidden;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            background: var(--glass);
-        }
-
-        .btn-premium:hover {
-            background: var(--gold);
-            color: black;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .scanline {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 191, 0, 0.1);
+        .bg-image {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 50;
-            animation: scan 4s linear infinite;
+            width: 100%;
+            height: 100%;
+            background: url('static/images/hero_bg.png') no-repeat center center/cover;
+            filter: brightness(0.3) saturate(0.8);
+            transition: transform 1s ease;
         }
 
-        @keyframes scan {
+        .bg-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            animation: scanDown 6s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scanDown {
             0% {
                 top: 0;
             }
@@ -106,77 +79,352 @@
             }
         }
 
-        .title-text {
-            font-family: 'Bebas Neue', cursive;
+        /* Main Layout */
+        .portal-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .portal-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Header */
+        .portal-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            pointer-events: auto;
+        }
+
+        .logo .gold {
+            color: var(--vindicta-gold);
+        }
+
+        .logo .white {
+            color: #fff;
+        }
+
+        .tagline {
+            font-size: 0.65rem;
+            text-transform: uppercase;
             letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+        }
+
+        /* Pane Styles */
+        .pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .pane::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(0px);
+            transition: all 0.5s;
+        }
+
+        .pane:hover::before {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        .pane-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.5s ease;
+        }
+
+        .pane:hover .pane-content {
+            transform: translateY(-10px);
+        }
+
+        /* Club Pane */
+        .pane-club {
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pane-club:hover {
+            border-color: rgba(233, 69, 96, 0.3);
+        }
+
+        .pane-club:hover~.bg-layer .bg-image {
+            transform: scale(1.05) translateX(3%);
+        }
+
+        /* Platform Pane */
+        .pane-platform:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .pane-platform:hover~.bg-layer .bg-image {
+            transform: scale(1.05) translateX(-3%);
+        }
+
+        /* Pane Typography */
+        .pane-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .pane-club .pane-title {
+            color: #fff;
+        }
+
+        .pane-club .pane-title span {
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+        }
+
+        .pane-club:hover .pane-title span {
+            color: #e94560;
+        }
+
+        .pane-platform .pane-title {
+            background: linear-gradient(135deg, var(--vindicta-gold) 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pane-subtitle {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .pane-club .pane-subtitle {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .pane-platform .pane-subtitle {
+            color: rgba(0, 212, 255, 0.5);
+        }
+
+        .pane-line {
+            width: 60px;
+            height: 2px;
+            margin: 0 auto 2rem;
+            transition: all 0.5s;
+        }
+
+        .pane-club .pane-line {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .pane-club:hover .pane-line {
+            width: 120px;
+            background: #e94560;
+        }
+
+        .pane-platform .pane-line {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        .pane-platform:hover .pane-line {
+            width: 120px;
+            background: var(--vindicta-gold);
+        }
+
+        .pane-desc {
+            max-width: 280px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-family: var(--font-body);
+            transition: color 0.3s;
+        }
+
+        .pane:hover .pane-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Buttons */
+        .pane-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pane-club:hover .pane-btn {
+            background: #e94560;
+            border-color: #e94560;
+            color: #fff;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);
+        }
+
+        .pane-platform:hover .pane-btn {
+            background: var(--vindicta-gold);
+            border-color: var(--vindicta-gold);
+            color: #000;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Footer */
+        .portal-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .portal-footer p {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+        }
+
+        /* Corner Accents */
+        .corner-accent {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
         }
     </style>
 </head>
 
-<body class="flex flex-col md:flex-row h-screen">
-    <div class="hero-bg"></div>
-    <div class="scanline"></div>
+<body>
 
-    <!-- Navigation Overlay -->
-    <div class="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center pointer-events-none">
-        <div class="text-3xl font-black tracking-tighter title-text pointer-events-auto">
-            <span class="text-white">VINDICTA</span> <span class="text-amber-500">PORTAL</span>
-        </div>
-        <div class="hidden md:block text-xs uppercase tracking-[0.3em] text-gray-500 font-bold">
-            Established M3.020 | Long Island, NY
-        </div>
+    <!-- Background Layer -->
+    <div class="bg-layer">
+        <div class="bg-image"></div>
+        <div class="bg-gradient"></div>
+        <div class="scanline"></div>
     </div>
 
-    <!-- Club Gateway -->
-    <a href="/club/"
-        class="pane-club group relative flex-1 flex flex-col items-center justify-center p-12 split-pane overflow-hidden border-r border-white/5">
-        <div
-            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        </div>
+    <!-- Corner Accents -->
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
 
-        <div class="relative z-10 text-center transform group-hover:scale-105 transition-transform duration-500">
-            <h2
-                class="text-6xl md:text-8xl font-black text-white title-text mb-2 opacity-90 group-hover:opacity-100 transition-all">
-                THE <span class="text-gray-400 group-hover:text-white transition-colors">CLUB</span></h2>
-            <p class="text-gray-400 uppercase tracking-[0.4em] text-sm mb-8 font-semibold">Community + Identity</p>
-            <div
-                class="h-1 w-24 bg-white/20 mx-auto group-hover:w-48 group-hover:bg-white transition-all duration-500 mb-8">
+    <!-- Header -->
+    <header class="portal-header">
+        <div class="logo">
+            <span class="white">VINDICTA</span> <span class="gold">PORTAL</span>
+        </div>
+        <div class="tagline">Est. M3.020 • Long Island, NY</div>
+    </header>
+
+    <!-- Main Split -->
+    <div class="portal-container">
+
+        <!-- Club Pane -->
+        <a href="club/" class="pane pane-club">
+            <div class="pane-content">
+                <h2 class="pane-title">THE <span>CLUB</span></h2>
+                <p class="pane-subtitle">Community • Brotherhood • Glory</p>
+                <div class="pane-line"></div>
+                <p class="pane-desc">Join the fellowship. Access team rosters, upcoming events, and community resources.
+                </p>
+                <span class="pane-btn">Enter Sanctum</span>
             </div>
-            <p class="max-w-xs mx-auto text-gray-500 group-hover:text-gray-300 transition-colors leading-relaxed mb-8">
-                Join the fellowship. Access team rosters, community events, and the Code of Conduct.
-            </p>
-            <button class="btn-premium">Access Sanctum</button>
-        </div>
-    </a>
+        </a>
 
-    <!-- Platform Gateway -->
-    <a href="/platform/"
-        class="pane-platform group relative flex-1 flex flex-col items-center justify-center p-12 split-pane overflow-hidden">
-        <div
-            class="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        </div>
-
-        <div class="relative z-10 text-center transform group-hover:scale-105 transition-transform duration-500">
-            <h2 class="text-6xl md:text-8xl font-black accent-gradient title-text mb-2">THE <span
-                    class="text-amber-600">APP</span></h2>
-            <p class="text-amber-500/60 uppercase tracking-[0.4em] text-sm mb-8 font-semibold">Intelligence + Strategy
-            </p>
-            <div
-                class="h-1 w-24 bg-amber-500/20 mx-auto group-hover:w-48 group-hover:bg-amber-500 transition-all duration-500 mb-8">
+        <!-- Platform Pane -->
+        <a href="platform/" class="pane pane-platform">
+            <div class="pane-content">
+                <h2 class="pane-title">THE <span>PLATFORM</span></h2>
+                <p class="pane-subtitle">Strategy • Intelligence • Precision</p>
+                <div class="pane-line"></div>
+                <p class="pane-desc">Unleash the Meta-Oracle. Track battles, analyze data, and gain the competitive
+                    edge.</p>
+                <span class="pane-btn">Initialize Core</span>
             </div>
-            <p
-                class="max-w-xs mx-auto text-gray-500 group-hover:text-amber-200/60 transition-colors leading-relaxed mb-8">
-                Unleash the Meta-Oracle. Manage your Gas Tank, track Warscribe logs, and roll the Oracle Dice.
-            </p>
-            <button class="btn-premium">Initialize Core</button>
-        </div>
-    </a>
+        </a>
 
-    <div class="fixed bottom-0 left-0 w-full p-8 z-50 flex justify-center pointer-events-none">
-        <div class="text-[10px] uppercase tracking-[0.5em] text-white/20 font-bold">
-            Portal Active | Vindicta Operations
-        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+        <p>Portal Active • Vindicta Operations Command</p>
+    </footer>
 
 </body>
 

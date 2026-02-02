@@ -33,11 +33,11 @@ The Vindicta Portal MUST operate at **zero standing monthly cost**. All infrastr
 
 All development MUST follow this strict order of operations:
 
-1. **Specification (SDD)**: A written spec defining the feature MUST exist FIRST
+1. **Specification (SDD)**: A written spec (./specs/ folder, .gemini/commands/speckit.specify.toml, .specify/templates/spec-template.md ) defining the feature through a user story MUST exist FIRST. 
 2. **Behavioral Tests (BDD)**: Gherkin-style expectations MUST be defined and confirmed failing
-3. **Unit Tests (TDD)**: Granular tests written AFTER behavioral tests exist
-4. **Implementation**: Code written ONLY after tests exist
-5. **Verification**: A "Green" test suite is the only passport for code to enter the codebase
+3. **Unit Tests (TDD)**: Granular tests written AFTER behavioral tests exist and confirmed failing BEFORE implementation
+4. **Implementation**: Code written ONLY after tests exist and confirmed passing
+5. **Verification**: A "Green" test suite is the only passport for code to enter the codebase 
 
 **Order of Operations**: Specification → BDD Tests → TDD Tests → Implementation → Verification
 
