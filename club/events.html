@@ -1,134 +1,302 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" class="club-theme">
 
 <head>
     <title>Upcoming Events | Team Vindicta</title>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
-    <link href="assets/css/main.css" rel="stylesheet" />
-    <noscript>
-        <link href="assets/css/noscript.css" rel="stylesheet" />
-    </noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description"
+        content="Upcoming events from Team Vindicta - tournaments, game nights, painting workshops, and more." />
+
+    <!-- Design System -->
+    <link href="../assets/css/design-system.css" rel="stylesheet" />
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #1a1a2e !important;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
         }
 
-        .event-card {
-            background: rgba(30, 30, 50, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
-        }
-
-        .event-date {
-            color: #FFD700;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .event-title {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-        }
-
-        .event-location {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .event-type {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.2);
-            color: #FFD700;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-        }
-
-        #club-nav {
-            background: rgba(15, 15, 30, 0.95);
+        /* Navigation */
+        .club-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        #club-nav .logo {
-            color: #FFD700;
-            font-size: 1.5rem;
-            font-weight: bold;
+        .club-nav .logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
             text-decoration: none;
         }
 
-        #club-nav ul {
+        .club-nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
-            margin: 0;
-            padding: 0;
         }
 
-        #club-nav a {
-            color: #ccc;
+        .club-nav a {
+            color: var(--text-secondary);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
-        #club-nav a:hover,
-        #club-nav a.active {
-            color: #FFD700;
+        .club-nav a:hover,
+        .club-nav a.active {
+            color: var(--vindicta-gold);
         }
 
+        /* Page Header */
         .page-header {
+            padding: 10rem 2rem 4rem;
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, rgba(30, 30, 50, 1) 0%, rgba(26, 26, 46, 1) 100%);
+            background: linear-gradient(180deg, rgba(22, 33, 62, 0.5) 0%, var(--bg-primary) 100%);
         }
 
         .page-header h1 {
-            color: #FFD700;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
+            margin-bottom: 1rem;
         }
 
         .page-header p {
-            color: #888;
-            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
         }
 
-        .content-wrapper {
-            max-width: 800px;
+        /* Events Content */
+        .events-content {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 2rem 4rem;
         }
 
+        /* Event Type Filters */
+        .event-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: var(--vindicta-gold);
+            color: var(--vindicta-gold);
+        }
+
+        /* Event Card */
+        .event-card {
+            background: rgba(30, 30, 50, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--vindicta-gold);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .event-card:hover {
+            border-color: var(--vindicta-gold);
+            transform: translateX(8px);
+        }
+
+        .event-card:hover::before {
+            opacity: 1;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--vindicta-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-type.tournament {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--vindicta-gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .event-type.game-night {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .event-type.hobby {
+            background: rgba(233, 69, 96, 0.15);
+            color: #e94560;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .event-type.major {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(233, 69, 96, 0.2));
+            color: var(--vindicta-gold);
+            border: 1px solid var(--vindicta-gold);
+        }
+
+        .event-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Featured Event */
+        .event-card.featured {
+            background: linear-gradient(135deg, rgba(40, 40, 60, 0.8) 0%, rgba(30, 30, 50, 0.9) 100%);
+            border-color: var(--vindicta-gold);
+        }
+
+        .event-card.featured::after {
+            content: '⭐ FEATURED';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--vindicta-gold);
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* No Events */
         .no-events {
             text-align: center;
-            color: #666;
-            padding: 3rem;
-            border: 2px dashed rgba(255, 215, 0, 0.2);
-            border-radius: 8px;
+            color: var(--text-muted);
+            padding: 4rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--vindicta-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .club-nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .event-header {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
-<body class="is-preload">
+<body>
 
-    <!-- Club Navigation -->
-    <nav id="club-nav">
+    <!-- Navigation -->
+    <nav class="club-nav">
         <a class="logo" href="index.html">⚔️ VINDICTA</a>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -142,63 +310,91 @@
 
     <!-- Page Header -->
     <header class="page-header">
-        <h1>Upcoming Events</h1>
+        <h1>📅 Upcoming Events</h1>
         <p>Tournaments, game nights, and community gatherings</p>
     </header>
 
     <!-- Events Content -->
-    <div class="content-wrapper">
+    <div class="events-content">
 
-        <!-- Upcoming Event -->
-        <article class="event-card">
-            <span class="event-date">📅 February 15, 2026</span>
-            <h2 class="event-title">Monthly RTT - February Showdown</h2>
-            <p class="event-location">📍 Battle Bunker, Long Island NY</p>
-            <p>32-player RTT with prizes. 2000 points, WTC format. Registration opens Feb 1st.</p>
-            <span class="event-type">🏆 Tournament</span>
-        </article>
+        <!-- Filters -->
+        <div class="event-filters">
+            <button class="filter-btn active">All Events</button>
+            <button class="filter-btn">🏆 Tournaments</button>
+            <button class="filter-btn">🎲 Game Nights</button>
+            <button class="filter-btn">🎨 Hobby</button>
+        </div>
 
-        <!-- Game Night -->
-        <article class="event-card">
-            <span class="event-date">📅 Every Thursday</span>
-            <h2 class="event-title">Thursday Night Throwdown</h2>
-            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
-            <p>Casual games and practice matches. All skill levels welcome. Bring your army!</p>
-            <span class="event-type">🎲 Game Night</span>
-        </article>
-
-        <!-- Painting Session -->
-        <article class="event-card">
-            <span class="event-date">📅 February 22, 2026</span>
-            <h2 class="event-title">Painting Workshop - Weathering Techniques</h2>
-            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
-            <p>Learn advanced weathering techniques. Bring WIP models and supplies provided.</p>
-            <span class="event-type">🎨 Hobby</span>
-        </article>
-
-        <!-- Major Tournament -->
-        <article class="event-card">
-            <span class="event-date">📅 March 8-9, 2026</span>
+        <!-- Featured Event -->
+        <article class="event-card featured">
+            <div class="event-header">
+                <span class="event-date">📅 March 8-9, 2026</span>
+                <span class="event-type major">🏆 Major GT</span>
+            </div>
             <h2 class="event-title">Vindicta GT 2026</h2>
             <p class="event-location">📍 Convention Center, Long Island NY</p>
-            <p>Our flagship 2-day GT! 64 players, cash prizes, and fully catered. Early bird discounts available.</p>
-            <span class="event-type">🏆 Major Tournament</span>
+            <p class="event-description">Our flagship 2-day Grand Tournament! 64 players, cash prizes, and fully
+                catered. Early bird discounts available now. This is the premier competitive event on Long Island.</p>
+        </article>
+
+        <!-- Monthly RTT -->
+        <article class="event-card">
+            <div class="event-header">
+                <span class="event-date">📅 February 15, 2026</span>
+                <span class="event-type tournament">🏆 Tournament</span>
+            </div>
+            <h2 class="event-title">Monthly RTT - February Showdown</h2>
+            <p class="event-location">📍 Battle Bunker, Long Island NY</p>
+            <p class="event-description">32-player RTT with prizes. 2000 points, WTC format. Registration opens Feb 1st.
+                Come test your lists before the GT!</p>
+        </article>
+
+        <!-- Weekly Game Night -->
+        <article class="event-card">
+            <div class="event-header">
+                <span class="event-date">📅 Every Thursday</span>
+                <span class="event-type game-night">🎲 Game Night</span>
+            </div>
+            <h2 class="event-title">Thursday Night Throwdown</h2>
+            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
+            <p class="event-description">Casual games and practice matches. All skill levels welcome. Bring your army!
+                Great for testing new lists and meeting club members.</p>
+        </article>
+
+        <!-- Painting Workshop -->
+        <article class="event-card">
+            <div class="event-header">
+                <span class="event-date">📅 February 22, 2026</span>
+                <span class="event-type hobby">🎨 Hobby</span>
+            </div>
+            <h2 class="event-title">Painting Workshop - Weathering Techniques</h2>
+            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
+            <p class="event-description">Learn advanced weathering techniques from our painting experts. Bring your WIP
+                models! Supplies and refreshments provided.</p>
+        </article>
+
+        <!-- New Player Night -->
+        <article class="event-card">
+            <div class="event-header">
+                <span class="event-date">📅 First Sunday of Each Month</span>
+                <span class="event-type game-night">🎲 Game Night</span>
+            </div>
+            <h2 class="event-title">New Player Welcome Day</h2>
+            <p class="event-location">📍 Vindicta HQ, Long Island NY</p>
+            <p class="event-description">New to 40K? This is for you! Learn the rules, try demo games, and meet the
+                community. Loaner armies available.</p>
         </article>
 
     </div>
 
     <!-- Footer -->
-    <footer style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid rgba(255, 215, 0, 0.1);">
+    <footer class="footer">
+        <div class="footer-logo">⚔️ VINDICTA</div>
         <p>© 2026 Team Vindicta | Long Island, NY</p>
-        <p><a href="https://discord.gg/vindicta" target="_blank" style="color: #FFD700;">Join our Discord</a></p>
+        <p style="margin-top: 0.5rem;"><a href="../platform/"
+                style="color: var(--vindicta-gold); text-decoration: none;">Access the Platform →</a></p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
