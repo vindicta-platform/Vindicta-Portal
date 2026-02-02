@@ -1,50 +1,92 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: 0.0.0 → 1.0.0
+Bump rationale: Initial constitution creation (MAJOR - first stable version)
+Added principles: I. Test-First Visual Development, II. Visual Fidelity, III. Simplicity, IV. Graceful Degradation
+Added sections: Core Principles, Development Workflow, Governance
+Removed sections: All placeholder content
+Templates requiring updates: ✅ Updated plan.md Constitution Check section
+Deferred items: None
+-->
+
+# Vindicta Portal Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-First Visual Development (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All visual changes—HTML structure, CSS styling, animations—MUST have corresponding Playwright tests written and approved BEFORE implementation begins.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rules**:
+- Red-Green-Refactor cycle strictly enforced for UI changes
+- Tests verify structural elements, visual styling, and user interactions
+- NO visual change may be deployed without passing test coverage
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Prevents regression, ensures design intent is preserved, enables confident refactoring.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+**Known Violation**: 2026-02-01 visual overhaul implemented before tests. See [retrospective](file:///c:/Users/bfoxt/Vindicta-Platform/Vindicta-Portal/docs/retrospectives/2026-02-01-visual-overhaul-violation.md).
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### II. Visual Fidelity
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+The Portal MUST maintain premium, cohesive visual design across all pages and viewports.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rules**:
+- Design system tokens (colors, typography, spacing) defined in `assets/css/design-system.css`
+- All pages MUST be responsive (mobile, tablet, desktop breakpoints)
+- Club section: warm, community-focused aesthetic
+- Platform section: technical, strategic, tool-focused aesthetic
+- Landing page: dramatic, immersive gateway
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: First impressions matter. The Portal is the face of the Vindicta brand.
+
+### III. Simplicity (YAGNI)
+
+Start with the simplest solution that works. Add complexity only when proven necessary.
+
+**Rules**:
+- Static HTML preferred over frameworks where sufficient
+- Use existing Firebase infrastructure before adding new services
+- Avoid premature abstraction—extract patterns after duplication observed
+- Every dependency MUST justify its inclusion
+
+**Rationale**: Reduces maintenance burden, speeds development, keeps hosting costs minimal.
+
+### IV. Graceful Degradation
+
+The Portal MUST remain functional when external services are unavailable.
+
+**Rules**:
+- Pages MUST load and display content without JavaScript where feasible
+- Remote configuration MUST fall back to hardcoded defaults
+- Error states MUST be user-friendly, never expose technical details
+- Offline-first mindset for static content
+
+**Rationale**: User experience preserved regardless of network conditions or service outages.
+
+## Development Workflow
+
+### Testing Requirements
+
+| Change Type | Test Requirement |
+|-------------|------------------|
+| New page | Structural tests + visual regression baseline |
+| Styling change | CSS property verification tests |
+| Animation | Timing/behavior tests |
+| Responsive fix | Viewport-specific tests |
+
+### Deployment Process
+
+1. All tests pass locally (`npx playwright test`)
+2. Visual verification on localhost
+3. Deploy to Firebase Hosting (`firebase deploy --only hosting`)
+4. Verify production site
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- Constitution supersedes all other documentation
+- Amendments require: documentation, justification, version increment
+- All PRs MUST verify compliance with these principles
+- Violations MUST be documented in retrospectives
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-02-01 | **Last Amended**: 2026-02-01
