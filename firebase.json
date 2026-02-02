@@ -5,10 +5,18 @@
             "firebase.json",
             "**/.*",
             "**/node_modules/**",
+            "**/test-results/**",
+            "**/tests/**",
+            "**/specs/**",
+            "**/playwright-report/**",
+            "**/site/**",
             "package.json",
             "package-lock.json",
+            "playwright.config.ts",
             "README.md",
-            "docs/**"
+            "docs/**",
+            "scratch.md",
+            "mkdocs.yml"
         ],
         "rewrites": [
             {

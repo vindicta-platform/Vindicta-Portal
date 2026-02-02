@@ -17,28 +17,56 @@
     </noscript>
     <style>
         #banner {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/banner.jpg') !important;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('images/banner.jpg') !important;
             background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
 
         #banner .logo .icon {
-            color: #FFBF00 !important;
-            border-color: #FFBF00 !important;
+            color: #FFD700 !important;
+            border-color: #FFD700 !important;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         #banner h2 {
             font-family: 'Outfit', sans-serif;
             font-weight: 900;
             letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(255, 191, 0, 0.3);
         }
 
         .wrapper.spotlight .inner {
-            background: rgba(15, 15, 15, 0.7) !important;
-            backdrop-filter: blur(10px);
+            background: rgba(15, 15, 15, 0.85) !important;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .wrapper.spotlight .image img {
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .wrapper.spotlight .image img:hover {
+            border-color: rgba(255, 215, 0, 0.6);
         }
 
         body {
-            background-color: #000 !important;
+            background-color: #0a0a0a !important;
+        }
+
+        a.special {
+            border-color: #FFD700 !important;
+            color: #FFD700 !important;
+        }
+
+        a.special:hover {
+            background-color: #FFD700 !important;
+            color: #000 !important;
+        }
+
+        h2.major {
+            color: #FFD700;
         }
     </style>
 </head>
