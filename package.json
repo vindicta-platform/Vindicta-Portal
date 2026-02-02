@@ -1,0 +1,16 @@
+{
+    "name": "vindicta-portal",
+    "version": "1.0.0",
+    "description": "Static web portal for Vindicta Platform",
+    "scripts": {
+        "dev": "npx serve . -l 3000",
+        "serve": "firebase serve --only hosting",
+        "deploy": "firebase deploy --only hosting"
+    },
+    "keywords": [
+        "vindicta",
+        "warhammer",
+        "portal"
+    ],
+    "license": "MIT"
+}

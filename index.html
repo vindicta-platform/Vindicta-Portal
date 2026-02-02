@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINDICTA | The Apex of Competitive Tabletop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --amber: #FFBF00;
+            --dark-gray: #121212;
+            --deep-black: #080808;
+            --glass: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--deep-black);
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('static/images/hero_bg.png') no-repeat center center/cover;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -1;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .accent-gradient {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .split-pane {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(0px);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .split-pane:hover {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            border-color: var(--amber);
+        }
+
+        .pane-club:hover~.hero-bg {
+            transform: scale(1.05) translateX(2%);
+        }
+
+        .pane-platform:hover~.hero-bg {
+            transform: scale(1.05) translateX(-2%);
+        }
+
+        .btn-premium {
+            position: relative;
+            padding: 12px 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: var(--glass);
+        }
+
+        .btn-premium:hover {
+            background: var(--gold);
+            color: black;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 191, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        .title-text {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col md:flex-row h-screen">
+    <div class="hero-bg"></div>
+    <div class="scanline"></div>
+
+    <!-- Navigation Overlay -->
+    <div class="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center pointer-events-none">
+        <div class="text-3xl font-black tracking-tighter title-text pointer-events-auto">
+            <span class="text-white">VINDICTA</span> <span class="text-amber-500">PORTAL</span>
+        </div>
+        <div class="hidden md:block text-xs uppercase tracking-[0.3em] text-gray-500 font-bold">
+            Established M3.020 | Long Island, NY
+        </div>
+    </div>
+
+    <!-- Club Gateway -->
+    <a href="/club/"
+        class="pane-club group relative flex-1 flex flex-col items-center justify-center p-12 split-pane overflow-hidden border-r border-white/5">
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <div class="relative z-10 text-center transform group-hover:scale-105 transition-transform duration-500">
+            <h2
+                class="text-6xl md:text-8xl font-black text-white title-text mb-2 opacity-90 group-hover:opacity-100 transition-all">
+                THE <span class="text-gray-400 group-hover:text-white transition-colors">CLUB</span></h2>
+            <p class="text-gray-400 uppercase tracking-[0.4em] text-sm mb-8 font-semibold">Community + Identity</p>
+            <div
+                class="h-1 w-24 bg-white/20 mx-auto group-hover:w-48 group-hover:bg-white transition-all duration-500 mb-8">
+            </div>
+            <p class="max-w-xs mx-auto text-gray-500 group-hover:text-gray-300 transition-colors leading-relaxed mb-8">
+                Join the fellowship. Access team rosters, community events, and the Code of Conduct.
+            </p>
+            <button class="btn-premium">Access Sanctum</button>
+        </div>
+    </a>
+
+    <!-- Platform Gateway -->
+    <a href="/platform/"
+        class="pane-platform group relative flex-1 flex flex-col items-center justify-center p-12 split-pane overflow-hidden">
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <div class="relative z-10 text-center transform group-hover:scale-105 transition-transform duration-500">
+            <h2 class="text-6xl md:text-8xl font-black accent-gradient title-text mb-2">THE <span
+                    class="text-amber-600">APP</span></h2>
+            <p class="text-amber-500/60 uppercase tracking-[0.4em] text-sm mb-8 font-semibold">Intelligence + Strategy
+            </p>
+            <div
+                class="h-1 w-24 bg-amber-500/20 mx-auto group-hover:w-48 group-hover:bg-amber-500 transition-all duration-500 mb-8">
+            </div>
+            <p
+                class="max-w-xs mx-auto text-gray-500 group-hover:text-amber-200/60 transition-colors leading-relaxed mb-8">
+                Unleash the Meta-Oracle. Manage your Gas Tank, track Warscribe logs, and roll the Oracle Dice.
+            </p>
+            <button class="btn-premium">Initialize Core</button>
+        </div>
+    </a>
+
+    <div class="fixed bottom-0 left-0 w-full p-8 z-50 flex justify-center pointer-events-none">
+        <div class="text-[10px] uppercase tracking-[0.5em] text-white/20 font-bold">
+            Portal Active | Vindicta Operations
+        </div>
+    </div>
+
+</body>
+
+</html>

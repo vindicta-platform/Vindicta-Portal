@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vindicta Platform | The Future of Tabletop Wargaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(234, 179, 8, 0.5), 0 0 20px rgba(234, 179, 8, 0.3);
+        }
+
+        .card-glow {
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.1), 0 0 30px rgba(234, 179, 8, 0.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.2), 0 5px 10px rgba(234, 179, 8, 0.1);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .locked-cursor {
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-950 text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- Header (Injected by portal-ui.js) -->
+    <header id="portal-header"></header>
+
+    <!-- Hero Section -->
+    <main class="pt-24">
+        <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gray-950/80 z-10"></div>
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-grid-pattern opacity-10"
+                    style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2740%27 height=%2740%27 fill=%27none%27 stroke-width=%271%27 stroke=%27%23374151%27%3E%3Cpath d=%27M0 20h40M20 0v40%27/%3E%3C/svg%3E');">
+                </div>
+                <div
+                    class="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-amber-500/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl animate-pulse">
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 text-center z-20">
+                <div class="inline-block px-4 py-2 border border-amber-500/30 bg-amber-500/5 rounded-full mb-8">
+                    <span class="text-[10px] uppercase tracking-[0.4em] font-black text-amber-500">Platform V2.0
+                        Active</span>
+                </div>
+                <h2 class="text-6xl md:text-8xl font-black uppercase text-white mb-6 text-glow leading-none">
+                    STRATEGY OVER
+                    <br class="hidden md:block" />
+                    <span class="text-amber-500">ADMINISTRATION.</span>
+                </h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-400 mb-12 font-light">
+                    Transform games into tactical data clusters. Streamline battles with AI-backed
+                    prediction and an immutable financial ledger.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="dashboard.html"
+                        class="bg-amber-500 hover:bg-amber-400 text-black font-black py-4 px-10 rounded-lg text-sm uppercase tracking-widest transition duration-300 transform hover:scale-105 shadow-2xl">
+                        Enter Dashboard
+                    </a>
+                    <a href="#features"
+                        class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition-colors py-4 px-8 border border-white/10 rounded-lg hover:border-white/30">
+                        Explore Systems
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-32 bg-gray-950">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <a href="warscribe.html" class="block">
+                        <div
+                            class="bg-gray-900/40 p-10 rounded-3xl border border-white/5 card-glow h-full group hover:border-amber-500/30 transition-all">
+                            <div
+                                class="h-16 w-16 mb-8 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-black transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-2xl font-black text-white mb-4 uppercase tracking-tighter">WARScribe</h4>
+                            <p class="text-gray-500 leading-relaxed group-hover:text-gray-300 transition-colors">
+                                Standardized notation for battle logs. Convert analog play into structured digital
+                                truth.
+                            </p>
+                        </div>
+                    </a>
+
+                    <div class="locked-cursor opacity-60">
+                        <div class="bg-gray-900/20 p-10 rounded-3xl border border-white/5 h-full relative">
+                            <div
+                                class="absolute top-10 right-10 text-[10px] uppercase tracking-widest font-black text-amber-500/40 px-3 py-1 border border-amber-500/20 rounded-full italic">
+                                Restricted</div>
+                            <div
+                                class="h-16 w-16 mb-8 bg-gray-800/50 rounded-2xl flex items-center justify-center text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-2xl font-black text-gray-500 mb-4 uppercase tracking-tighter">GAS Tank</h4>
+                            <p class="text-gray-600 leading-relaxed">
+                                Managed operational funds for high-intensity API processing. Coming soon.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="locked-cursor opacity-60">
+                        <div class="bg-gray-900/20 p-10 rounded-3xl border border-white/5 h-full relative">
+                            <div
+                                class="absolute top-10 right-10 text-[10px] uppercase tracking-widest font-black text-amber-500/40 px-3 py-1 border border-amber-500/20 rounded-full italic">
+                                Restricted</div>
+                            <div
+                                class="h-16 w-16 mb-8 bg-gray-800/50 rounded-2xl flex items-center justify-center text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V4m0 16v-2M12 12l-2 2-2-2 2-2 2 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-2xl font-black text-gray-500 mb-4 uppercase tracking-tighter">Meta-Oracle
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">
+                                Predictive adversarial engine. The ultimate training opponent. Undergoing ritual
+                                cleansing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="portal-footer"></footer>
+
+    <script src="js/portal-ui.js"></script>
+    <script>
+        // Reveal animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
+    </script>
+</body>
+
+</html>
