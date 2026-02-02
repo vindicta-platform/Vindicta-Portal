@@ -2,69 +2,84 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - banner [ref=e2]:
-    - generic [ref=e3]:
-      - generic [ref=e4]:
-        - generic [ref=e5]: V
-        - heading "Vindicta Portal" [level=1] [ref=e6]
-      - navigation [ref=e7]:
-        - link "Home" [ref=e8] [cursor=pointer]:
-          - /url: /platform/index.html
-        - link "Dashboard" [ref=e9] [cursor=pointer]:
-          - /url: /platform/dashboard.html
-        - link "Warscribe" [ref=e10] [cursor=pointer]:
-          - /url: /platform/warscribe.html
-        - generic [ref=e14]: Core Active
-  - generic [ref=e16]:
-    - generic [ref=e18]: 
-    - heading "This is Team Vindicta" [level=2] [ref=e19]
-    - paragraph [ref=e20]: A Long Island based Warhammer 40k competitive team based in NY.
-    - paragraph [ref=e21]: Started from the idea of invigorating the stagnant Long Island/NY Warhammer competitive scene, Vindicta has blazed trails onto the Warhammer Tournament Realm. With our roster ever growing, and our ideals as rock-solid as day one, Vindicta hopes to bring honest and fierce competitive gameplay to the whole of the Warhammer 40k scene.
-  - generic [ref=e22]:
-    - generic [ref=e24]:
-      - link:
-        - /url: about.html
-      - generic [ref=e25]:
-        - heading "Origins" [level=2] [ref=e26]
-        - paragraph [ref=e27]: Born amongst the uncertainty of COVID-19, Brandon, Anthony, and Joseph set upon game after game as the exterminatus outside would not allow for casual gaming. There, in that holy sanctum, there was only grind. After months of cheese gratering our faces off each other’s armies, a decision was made. That this fellowship was to be codified in signature and blood, and thus Vindicta was born.
-        - link " Learn more" [ref=e28] [cursor=pointer]:
+  - navigation [ref=e2]:
+    - link "⚔️ VINDICTA" [ref=e3] [cursor=pointer]:
+      - /url: index.html
+    - list [ref=e4]:
+      - listitem [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+      - listitem [ref=e7]:
+        - link "About" [ref=e8] [cursor=pointer]:
           - /url: about.html
-    - generic [ref=e30]:
-      - link:
-        - /url: team.html
-      - generic [ref=e31]:
-        - heading "Team Members" [level=2] [ref=e32]
-        - paragraph [ref=e33]: This is some text about our team members
-        - link " Learn more" [ref=e34] [cursor=pointer]:
+      - listitem [ref=e9]:
+        - link "Team" [ref=e10] [cursor=pointer]:
           - /url: team.html
-  - contentinfo [ref=e35]:
-    - generic [ref=e36]:
-      - generic [ref=e37]:
-        - generic [ref=e38]:
-          - generic [ref=e39]: VINDICTA PORTAL
-          - paragraph [ref=e40]: The definitive AI-backed ecosystem for competitive tabletop strategy. Built for the Long Island competitive scene, scaled for the galaxy.
-        - generic [ref=e41]:
-          - heading "Sub-Systems" [level=4] [ref=e42]
-          - list [ref=e43]:
-            - listitem [ref=e44]:
-              - link "Meta-Oracle" [ref=e45] [cursor=pointer]:
-                - /url: "#"
-            - listitem [ref=e46]:
-              - link "Gas Tank" [ref=e47] [cursor=pointer]:
-                - /url: "#"
-            - listitem [ref=e48]:
-              - link "WARScribe" [ref=e49] [cursor=pointer]:
-                - /url: "#"
-        - generic [ref=e50]:
-          - heading "Platform" [level=4] [ref=e51]
-          - list [ref=e52]:
-            - listitem [ref=e53]:
-              - link "API Docs" [ref=e54] [cursor=pointer]:
-                - /url: /docs
-            - listitem [ref=e55]:
-              - link "The Club" [ref=e56] [cursor=pointer]:
-                - /url: /club/
-      - generic [ref=e57]:
-        - paragraph [ref=e58]: © 2026 VINDICTA. ALL RIGHTS RESERVED.
-        - generic [ref=e60]: UNOFFICIAL / THIRD-PARTY PLATFORM
+      - listitem [ref=e11]:
+        - link "Events" [ref=e12] [cursor=pointer]:
+          - /url: events.html
+      - listitem [ref=e13]:
+        - link "Partners" [ref=e14] [cursor=pointer]:
+          - /url: partners.html
+      - listitem [ref=e15]:
+        - link "Join Us" [ref=e16] [cursor=pointer]:
+          - /url: join.html
+  - generic [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e19]: 🎲 Long Island, NY
+      - heading "Team Vindicta" [level=1] [ref=e20]
+      - paragraph [ref=e21]: A brotherhood forged in the fires of competition. We're a Warhammer 40,000 club dedicated to fierce gameplay, honest competition, and growing the community.
+      - generic [ref=e22]:
+        - link "Join the Brotherhood" [ref=e23] [cursor=pointer]:
+          - /url: join.html
+        - link "Upcoming Events" [ref=e24] [cursor=pointer]:
+          - /url: events.html
+    - generic [ref=e26]: Scroll to explore
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - heading "What We Offer" [level=2] [ref=e30]
+      - paragraph [ref=e31]: More than just games—we're building a community of passionate players
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: ⚔️
+        - heading "Competitive Play" [level=3] [ref=e35]
+        - paragraph [ref=e36]: Regular RTTs, practice games, and preparation for major tournaments. Sharpen your skills with the best.
+        - link "View Events →" [ref=e37] [cursor=pointer]:
+          - /url: events.html
+      - generic [ref=e38]:
+        - generic [ref=e39]: 🎨
+        - heading "Hobby Excellence" [level=3] [ref=e40]
+        - paragraph [ref=e41]: Painting workshops, army showcases, and hobby motivation. We celebrate the art of the hobby.
+        - link "Meet the Team →" [ref=e42] [cursor=pointer]:
+          - /url: team.html
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤝
+        - heading "Community First" [level=3] [ref=e45]
+        - paragraph [ref=e46]: Active Discord, weekly game nights, and a welcoming atmosphere for players of all skill levels.
+        - link "Join Us →" [ref=e47] [cursor=pointer]:
+          - /url: join.html
+  - generic [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]: 15+
+      - generic [ref=e52]: Active Members
+    - generic [ref=e53]:
+      - generic [ref=e54]: 50+
+      - generic [ref=e55]: Events Hosted
+    - generic [ref=e56]:
+      - generic [ref=e57]: 100+
+      - generic [ref=e58]: Games Played
+    - generic [ref=e59]:
+      - generic [ref=e60]: "2020"
+      - generic [ref=e61]: Founded
+  - generic [ref=e63]:
+    - heading "Ready to Join the Fight?" [level=2] [ref=e64]
+    - paragraph [ref=e65]: Whether you're a seasoned veteran or just starting your journey, there's a place for you in Team Vindicta.
+    - link "Request Discord Access" [ref=e66] [cursor=pointer]:
+      - /url: join.html
+  - contentinfo [ref=e67]:
+    - generic [ref=e68]: ⚔️ VINDICTA
+    - paragraph [ref=e69]: © 2026 Team Vindicta | Long Island, NY
+    - paragraph [ref=e70]:
+      - link "Access the Platform →" [ref=e71] [cursor=pointer]:
+        - /url: ../platform/
 ```
