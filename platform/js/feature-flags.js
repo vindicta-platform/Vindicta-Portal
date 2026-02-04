@@ -7,6 +7,18 @@
 
 /**
  * FeatureGate - Conditionally show/hide elements based on feature flags
+ * 
+ * ⚠️ SECURITY WARNING: This is CLIENT-SIDE ONLY.
+ * 
+ * These flags control VISUAL AIDS only (UI element visibility).
+ * They are NOT secure - users can inspect/modify client-side code.
+ * 
+ * For secure feature gating (API access, data permissions, billing):
+ * - Server-side validation is MANDATORY
+ * - Do NOT rely on these flags for authorization
+ * - Backend feature checks must be implemented separately
+ * 
+ * Server-side feature gating: DEFERRED (see Vindicta-API roadmap)
  */
 class FeatureGate {
 
