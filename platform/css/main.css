@@ -1,13 +1,21 @@
+/**
+ * Vindicta Portal Main Styles
+ * 
+ * Note: Import design-tokens.css before this file for token definitions.
+ * Tokens are defined in design-tokens.css, legacy vars below for backwards compat.
+ */
+
 :root {
-    --bg-dark: #0a0b10;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --accent-vibrant: #7000ff;
-    --accent-glow: #a35dff;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0c0;
-    --success: #00ff88;
-    --danger: #ff3366;
+    /* Legacy aliases - use design-tokens.css values instead */
+    --bg-dark: var(--color-bg-primary, #0a0b10);
+    --glass-bg: var(--glass-bg, rgba(255, 255, 255, 0.05));
+    --glass-border: var(--glass-border, rgba(255, 255, 255, 0.1));
+    --accent-vibrant: var(--color-brand-primary, #7000ff);
+    --accent-glow: var(--color-brand-secondary, #a35dff);
+    --text-primary: var(--color-text-primary, #ffffff);
+    --text-secondary: var(--color-text-secondary, #a0a0c0);
+    --success: var(--color-success, #00ff88);
+    --danger: var(--color-danger, #ff3366);
 }
 
 * {
