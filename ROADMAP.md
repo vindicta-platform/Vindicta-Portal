@@ -11,6 +11,7 @@
 **Milestone**: `v0.1.0-portal-foundation`  
 **Status**: 75% complete (3/4 deliverables)
 
+
 ## Week 2: Core Features (Feb 11-17)
 - [ ] Firebase Auth Integration
 - [ ] List Grader MVP

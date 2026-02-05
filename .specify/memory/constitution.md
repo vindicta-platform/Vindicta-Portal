@@ -1,92 +1,81 @@
 <!--
-SYNC IMPACT REPORT
-==================
-Version change: 0.0.0 → 1.0.0
-Bump rationale: Initial constitution creation (MAJOR - first stable version)
-Added principles: I. Test-First Visual Development, II. Visual Fidelity, III. Simplicity, IV. Graceful Degradation
-Added sections: Core Principles, Development Workflow, Governance
-Removed sections: All placeholder content
-Templates requiring updates: ✅ Updated plan.md Constitution Check section
-Deferred items: None
+Sync Impact Report: 2026-02-05
+Version change: [TEMPLATE] → v2.7.0-portal.1
+List of modified principles:
+- I. The Economic Prime Directive (Added)
+- II. Spec-Driven Methodology (Rule 19) (Added)
+- III. Generative Dice & Mechanical Fidelity (Added)
+- IV. Cognitive Deep Think Protocol (Added)
+- V. The No-Nag Policy & Debug Pivot (Added)
+- VI. Async-First Mandate (Added)
+- VII. Strict Test Performance & Isolation (Added)
+- VIII. Identity, Attribution & State Hygiene (Added)
+- IX. Repository Isolation & Tooling (Added)
+- X. Portal Static Fidelity (Added)
+Templates requiring updates:
+- ✅ .specify/templates/plan-template.md
+- ✅ .specify/templates/spec-template.md
+- ✅ .specify/templates/tasks-template.md
+- ✅ .specify/templates/checklist-template.md
+- ✅ .specify/templates/agent-file-template.md
+Follow-up TODOs:
+- None
 -->
 
 # Vindicta Portal Constitution
 
 ## Core Principles
 
-### I. Test-First Visual Development (NON-NEGOTIABLE)
+### I. The Economic Prime Directive
+Operations MUST run on GCP Free Tier within the `vindicta-warhammer` project only. No standing monthly costs for the base system. AI costs MUST be isolated via a "Gas Tank" model using Gemini models.
 
-All visual changes—HTML structure, CSS styling, animations—MUST have corresponding Playwright tests written and approved BEFORE implementation begins.
+### II. Spec-Driven Methodology (Rule 19)
+No code without a Specification. Behavioral (BDD) and Technical (TDD) tests MUST fail before implementation begins. Red - Green - Refactor.
 
-**Rules**:
-- Red-Green-Refactor cycle strictly enforced for UI changes
-- Tests verify structural elements, visual styling, and user interactions
-- NO visual change may be deployed without passing test coverage
+### III. Generative Dice & Mechanical Fidelity
+All game mechanics (dice/cards) MUST use CSPRNG with traceable `EntropyProof`. Agents MUST NOT simulate probabilistic outcomes; outcomes must be injected by the Dice Engine. Rules MUST adhere 1:1 to competitive standards (10th Ed).
 
-**Rationale**: Prevents regression, ensures design intent is preserved, enables confident refactoring.
+### IV. Cognitive Deep Think Protocol
+Agents must simulate "System 2" thinking:
+1. **Context Reconstruction**: Scan project state.
+2. **Adversarial Simulation**: Generate counter-arguments.
+3. **Recursive Decomposition**: Atomic task breakdown.
 
-**Known Violation**: 2026-02-01 visual overhaul implemented before tests. See [retrospective](file:///c:/Users/bfoxt/Vindicta-Platform/Vindicta-Portal/docs/retrospectives/2026-02-01-visual-overhaul-violation.md).
+### V. The No-Nag Policy & Debug Pivot
+Agents must try **3 distinct strategies** before reporting an error. If debugging fails to produce artifacts within 3 turns, the agent MUST run standard diagnostics.
 
-### II. Visual Fidelity
+### VI. Async-First Mandate
+All I/O MUST be asynchronous (`async`/`await`). Blocking calls in production or async paths are strictly PROHIBITED.
 
-The Portal MUST maintain premium, cohesive visual design across all pages and viewports.
+### VII. Strict Test Performance & Isolation
+- **60-Second Rule**: Unit test suite MUST NOT exceed 60 seconds.
+- **Strict Isolation**: No side effects in unit tests.
+- **AAA Pattern**: Arrange-Act-Assert for all tests.
+- **Mocking**: Zero-trust environment; config must be injected, not read from `.env`.
 
-**Rules**:
-- Design system tokens (colors, typography, spacing) defined in `assets/css/design-system.css`
-- All pages MUST be responsive (mobile, tablet, desktop breakpoints)
-- Club section: warm, community-focused aesthetic
-- Platform section: technical, strategic, tool-focused aesthetic
-- Landing page: dramatic, immersive gateway
+### VIII. Identity, Attribution & State Hygiene
+- **Attribution**: Model/Agent instance must sign-off on commits.
+- **State Hygiene**: Return to `main`, verify clean state before new features. No abandoned WIP.
 
-**Rationale**: First impressions matter. The Portal is the face of the Vindicta brand.
+### IX. Repository Isolation & Tooling
+- **Tooling**: Prohibited from reinventing project-defined CLI tools. Strictly Windows (PowerShell/Batch).
+- **Automation Testing**: Reusable logic MUST be encapsulated in PowerShell modules (`.psm1`) to enable unit and mock testing via Pester.
 
-### III. Simplicity (YAGNI)
-
-Start with the simplest solution that works. Add complexity only when proven necessary.
-
-**Rules**:
-- Static HTML preferred over frameworks where sufficient
-- Use existing Firebase infrastructure before adding new services
-- Avoid premature abstraction—extract patterns after duplication observed
-- Every dependency MUST justify its inclusion
-
-**Rationale**: Reduces maintenance burden, speeds development, keeps hosting costs minimal.
-
-### IV. Graceful Degradation
-
-The Portal MUST remain functional when external services are unavailable.
-
-**Rules**:
-- Pages MUST load and display content without JavaScript where feasible
-- Remote configuration MUST fall back to hardcoded defaults
-- Error states MUST be user-friendly, never expose technical details
-- Offline-first mindset for static content
-
-**Rationale**: User experience preserved regardless of network conditions or service outages.
+### X. Portal Static Fidelity
+The Vindicta Portal MUST remain a static asset deployment. Frameworks (React/Vue/etc.) are prohibited unless explicitly specified in the Feature Spec. Use Vanilla JS and CSS tokens for thematic consistency.
 
 ## Development Workflow
 
-### Testing Requirements
+### Spec-Kit Lifecycle
+All features MUST progress through the 9 core SDD workflows: Constitution → Spec → Clarify → Plan → Tasks → Implement → Analyze → Checklist → Tasks-to-Issues.
 
-| Change Type | Test Requirement |
-|-------------|------------------|
-| New page | Structural tests + visual regression baseline |
-| Styling change | CSS property verification tests |
-| Animation | Timing/behavior tests |
-| Responsive fix | Viewport-specific tests |
-
-### Deployment Process
-
-1. All tests pass locally (`npx playwright test`)
-2. Visual verification on localhost
-3. Deploy to Firebase Hosting (`firebase deploy --only hosting`)
-4. Verify production site
+### Quality Gates
+1. **Unit Tests**: 100% pass, >80% coverage.
+2. **Behavior Tests**: 100% acceptance scenarios.
+3. **Linting**: Standards compliant (`npm run lint`).
+4. **Security**: No secrets in code/logs.
 
 ## Governance
+This constitution supersedes all other practices. Amendments require a version bump and notification to the platform lead. All PRs must verify compliance with Rule 19 and the Async-First Mandate.
 
-- Constitution supersedes all other documentation
-- Amendments require: documentation, justification, version increment
-- All PRs MUST verify compliance with these principles
-- Violations MUST be documented in retrospectives
-
-**Version**: 1.0.0 | **Ratified**: 2026-02-01 | **Last Amended**: 2026-02-01
+**Version**: v2.7.0-portal.1 | **Ratified**: 2026-02-05 | **Last Amended**: 2026-02-05

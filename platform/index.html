@@ -12,6 +12,7 @@
     <link href="../assets/css/design-system.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
+
     <style>
         body {
             font-family: var(--font-display);
@@ -28,10 +29,11 @@
             right: 0;
             bottom: 0;
             background-image:
-                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(var(--accent-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--accent-dim) 1px, transparent 1px);
             background-size: 60px 60px;
             animation: gridMove 30s linear infinite;
+
             pointer-events: none;
             z-index: 0;
         }
@@ -58,7 +60,7 @@
         .glow-orb-1 {
             width: 600px;
             height: 600px;
-            background: rgba(0, 212, 255, 0.08);
+            background: var(--accent-dim);
             top: -200px;
             right: -200px;
         }
@@ -66,7 +68,7 @@
         .glow-orb-2 {
             width: 400px;
             height: 400px;
-            background: rgba(255, 215, 0, 0.06);
+            background: var(--vindicta-gold-dim);
             bottom: 200px;
             left: -150px;
             animation-delay: -4s;
@@ -179,6 +181,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
 
         .hero p {
             font-family: var(--font-body);
