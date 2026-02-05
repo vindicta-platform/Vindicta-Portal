@@ -528,6 +528,20 @@
                 style="color: var(--vindicta-gold); text-decoration: none;">Access the Platform →</a></p>
     </footer>
 
+    <!-- Firebase Remote Config Initialization -->
+    <script type="module">
+        import { remoteConfig, analytics } from '../assets/js/firebase-config.js';
+        import { REMOTE_CONFIG_DEFAULTS } from '../assets/js/remote-config.defaults.js';
+        import { FeatureFlagService } from '../assets/js/remote-config.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const flags = new FeatureFlagService(remoteConfig, REMOTE_CONFIG_DEFAULTS, analytics);
+            await flags.initialize();
+            window.vindictaFlags = flags;
+            console.log("Vindicta Club: Remote Config Initialized");
+            document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+        });
+    </script>
 </body>
 
 </html>

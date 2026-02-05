@@ -16,26 +16,28 @@
     <style>
         body {
             font-family: var(--font-display);
-            background: var(--bg-primary);
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1520 25%, #12121a 50%, #0d1a1a 75%, #0a0a0f 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
             color: var(--text-primary);
             overflow-x: hidden;
         }
 
-        /* Animated Grid Background */
-        .grid-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                linear-gradient(var(--accent-dim) 1px, transparent 1px),
-                linear-gradient(90deg, var(--accent-dim) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 30s linear infinite;
+        @keyframes gradientShift {
 
-            pointer-events: none;
-            z-index: 0;
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Grid Background - Hidden for cleaner look */
+        .grid-background {
+            display: none;
         }
 
         @keyframes gridMove {
@@ -442,7 +444,7 @@
         <a class="logo" href="index.html">◆ VINDICTA</a>
         <ul>
             <li><a href="index.html">Platform</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
+            <li data-feature="new_dashboard"><a href="dashboard.html">Dashboard</a></li>
             <li><a href="warscribe.html">WARScribe</a></li>
             <li><a href="../club/">Club</a></li>
         </ul>
@@ -458,7 +460,8 @@
         <p>Transform games into tactical data clusters. Streamline battles with AI-backed prediction and an immutable
             financial ledger.</p>
         <div class="hero-buttons">
-            <a href="dashboard.html" class="btn-cyber btn-cyber-primary">Enter Dashboard</a>
+            <a href="dashboard.html" class="btn-cyber btn-cyber-primary" data-feature="new_dashboard">Enter
+                Dashboard</a>
             <a href="#features" class="btn-cyber btn-cyber-outline">Explore Systems</a>
         </div>
     </section>
@@ -565,14 +568,58 @@
         <p>© 2026 Vindicta Platform | <a href="../club/">Visit the Club</a></p>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-remote-config-compat.js"></script>
-    
-    <!-- Vindicta Config Modules -->
-    <script src="js/firebase-config.js"></script>
-    <script src="js/feature-flags.js"></script>
+    <script type="module">
+        import { remoteConfig, analytics } from '../assets/js/firebase-config.js';
+        import { REMOTE_CONFIG_DEFAULTS } from '../assets/js/remote-config.defaults.js';
+        import { FeatureFlagService } from '../assets/js/remote-config.js';
 
+        document.addEventListener('DOMContentLoaded', async () => {
+            const flags = new FeatureFlagService(remoteConfig, REMOTE_CONFIG_DEFAULTS, analytics);
+            await flags.initialize();
+            window.vindictaFlags = flags;
+            console.log("Vindicta Platform: Remote Config Initialized");
+
+            // Example Feature Toggle: New Dashboard
+            const isDashboardEnabled = flags.isFeatureEnabled('new_dashboard');
+            const dashboardElements = document.querySelectorAll('[data-feature="new_dashboard"]');
+
+            dashboardElements.forEach(el => {
+                if (isDashboardEnabled) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.style.display = 'none'; // Fallback if Tailwind hidden class isn't enough
+                }
+            });
+
+            // Example Configuration Value: Upload Limit
+            const uploadLimit = flags.getNumber('conf_upload_limit_mb');
+            console.log(`Vindicta Platform: Maximum upload limit is ${uploadLimit}MB`);
+
+            // Example UI Variant: CTA Button
+            const ctaVariant = flags.getString('ui_cta_button_variant');
+            const ctaButtons = document.querySelectorAll('.btn-cyber-primary');
+
+            ctaButtons.forEach(btn => {
+                if (ctaVariant === 'red') {
+                    btn.style.background = 'linear-gradient(135deg, #e94560 0%, #a21b31 100%)';
+                    btn.style.boxShadow = '0 10px 40px rgba(233, 69, 96, 0.4)';
+                } else if (ctaVariant === 'gold') {
+                    btn.style.background = 'var(--vindicta-gold)';
+                    btn.style.boxShadow = '0 10px 40px rgba(255, 215, 0, 0.4)';
+                    btn.style.color = '#000';
+                }
+            });
+
+            document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+
+            // Dev Override Panel (localhost only)
+            if (location.hostname === 'localhost') {
+                import('../assets/js/remote-config-overrides.js').then(module => {
+                    module.initOverridePanel(flags);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -399,7 +399,12 @@
     </style>
 </head>
 
-<body>
+<body class="flags-loading">
+    <style>
+        .flags-loading [data-feature] {
+            visibility: hidden !important;
+        }
+    </style>
 
     <!-- Grid Background -->
     <div class="grid-bg"></div>
@@ -502,6 +507,20 @@
         <p>© 2026 Vindicta Platform | <a href="../club/">Visit the Club</a></p>
     </footer>
 
+    <!-- Firebase Remote Config Initialization -->
+    <script type="module">
+        import { remoteConfig, analytics } from '../assets/js/firebase-config.js';
+        import { REMOTE_CONFIG_DEFAULTS } from '../assets/js/remote-config.defaults.js';
+        import { FeatureFlagService } from '../assets/js/remote-config.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const flags = new FeatureFlagService(remoteConfig, REMOTE_CONFIG_DEFAULTS, analytics);
+            await flags.initialize();
+            window.vindictaFlags = flags;
+            document.body.classList.remove('flags-loading');
+            document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+        });
+    </script>
 </body>
 
 </html>

@@ -19,9 +19,9 @@
 
 **Purpose**: Project initialization and Firebase SDK integration
 
-- #23 T001 Install Firebase SDK dependency (`npm install firebase`)
-- #24 T002 [P] Create directory structure: `assets/js/` for Firebase modules
-- #25 T003 [P] Create `assets/js/firebase-config.js` with Firebase app initialization
+- [x] T001 Install Firebase SDK dependency (`npm install firebase`) [#23]
+- [x] T002 [P] Create directory structure: `assets/js/` for Firebase modules [#24]
+- [x] T003 [P] Create `assets/js/firebase-config.js` with Firebase app initialization [#25]
 
 ---
 
@@ -31,13 +31,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- #26 T004 Create `assets/js/remote-config.defaults.js` with default values map per data-model.md
-- #27 T005 Create `assets/js/remote-config.js` with `FeatureFlagService` class structure (constructor, `initialize()`)
-- #28 T006 Implement `getBoolean(key)`, `getNumber(key)`, `getString(key)` methods in `assets/js/remote-config.js`
-- #29 T007 Implement `isFeatureEnabled(featureName)` helper method in `assets/js/remote-config.js`
-- #30 T008 [P] Configure environment detection for cache intervals (12h prod, 0 dev) in `assets/js/firebase-config.js`
+- [x] T004 Create `assets/js/remote-config.defaults.js` with default values map per data-model.md [#26]
+- [x] T005 Create `assets/js/remote-config.js` with `FeatureFlagService` class structure (constructor, `initialize()`) [#27]
+- [x] T006 Implement `getBoolean(key)`, `getNumber(key)`, `getString(key)` methods in `assets/js/remote-config.js` [#28]
+- [x] T007 Implement `isFeatureEnabled(featureName)` helper method in `assets/js/remote-config.js` [#29]
+- [x] T008 [P] Configure environment detection for cache intervals (12h prod, 0 dev) in `assets/js/firebase-config.js` [#30]
 
-**Checkpoint**: Foundation ready - user story implementation can now begin
+**Checkpoint**: Foundation ready - user story implementation can now begin ✅
 
 ---
 
@@ -53,10 +53,10 @@
 - #32 T010 [P] [US1] Add Firebase SDK script module to `club/index.html`
 - #33 T011 [P] [US1] Add Firebase SDK script module to `platform/index.html`
 - #34 T012 [US1] Implement DOMContentLoaded initialization pattern in `index.html`
-- #35 T013 [US1] Add example feature toggle for `feat_new_dashboard_enabled` in `platform/index.html`
-- #36 T014 [US1] Verify graceful degradation when network unavailable (uses defaults per FR-003)
+- [x] T013 [US1] Add example feature toggle for `feat_new_dashboard_enabled` in `platform/index.html` [#35]
+- [x] T014 [US1] Verify graceful degradation when network unavailable (uses defaults per FR-003) [#36]
 
-**Checkpoint**: User Story 1 complete - Feature flags can be toggled via Firebase Console
+**Checkpoint**: User Story 1 complete - Feature flags can be toggled via Firebase Console ✅
 
 ---
 
@@ -84,9 +84,9 @@
 
 ### Implementation for User Story 3
 
-- #40 T018 [P] [US3] Add Firebase Analytics SDK import to `assets/js/firebase-config.js`
-- #41 T019 [US3] Implement `setUserProperties(properties)` method in `FeatureFlagService` in `assets/js/remote-config.js`
-- #42 T020 [US3] Implement `setUserId(userId)` method in `FeatureFlagService` in `assets/js/remote-config.js`
+- [x] T018 [P] [US3] Add Firebase Analytics SDK import to `assets/js/firebase-config.js` [#40]
+- [x] T019 [US3] Implement `setUserProperties(properties)` method in `FeatureFlagService` in `assets/js/remote-config.js` [#41]
+- [x] T020 [US3] Implement `setUserId(userId)` method in `FeatureFlagService` in `assets/js/remote-config.js` [#42]
 - #43 T021 [US3] Configure user ID targeting condition in Firebase Console
 - #44 T022 [US3] Verify user-specific flag targeting works
 
@@ -102,8 +102,8 @@
 
 ### Implementation for User Story 4
 
-- #45 T023 [US4] Add configuration value defaults to `assets/js/remote-config.defaults.js` (e.g., `conf_upload_limit_mb`)
-- #46 T024 [US4] Create example usage of `getNumber()` for upload limit validation
+- [x] T023 [US4] Add configuration value defaults to `assets/js/remote-config.defaults.js` [#45]
+- [x] T024 [US4] Create example usage of `getNumber()` for upload limit validation [#46]
 
 **Checkpoint**: User Story 4 complete - Configuration values can be changed dynamically
 
@@ -117,8 +117,8 @@
 
 ### Implementation for User Story 5
 
-- #47 T025 [US5] Add UI variant defaults to `assets/js/remote-config.defaults.js` (e.g., `ui_cta_button_variant`)
-- #48 T026 [US5] Create example usage of `getString()` for variant selection
+- [x] T025 [US5] Add UI variant defaults to `assets/js/remote-config.defaults.js` [#47]
+- [x] T026 [US5] Create example usage of `getString()` for variant selection [#48]
 
 **Checkpoint**: User Story 5 complete - A/B testing variants operational
 
@@ -128,12 +128,12 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- #49 T027 [P] Create Playwright test for feature flag toggle in `tests/feature-flags.spec.ts`
-- #50 T028 [P] Create mock `FeatureFlagService` for testing in `tests/mocks/feature-flags.mock.js`
-- #51 T029 [P] Add remaining HTML pages to Firebase SDK initialization (`club/about.html`, `club/team.html`, etc.)
-- #52 T030 Documentation: Update `quickstart.md` with actual API key values (placeholder → real)
-- #53 T031 Security: Verify API key domain restrictions in GCP Console per FR-012
-- #54 T032 Run `quickstart.md` validation scenarios end-to-end
+- [x] T027 [P] Create Playwright test for feature flag toggle in `tests/feature-flags.spec.ts` [#49]
+- [x] T028 [P] Create mock `FeatureFlagService` for testing in `tests/mocks/feature-flags.mock.js` [#50]
+- [x] T029 [P] Add remaining HTML pages to Firebase SDK initialization (`club/about.html`, `club/team.html`, etc.) [#51]
+- [x] T030 Documentation: Update `quickstart.md` with actual API key values (placeholder → real) [#52]
+- [x] T031 Security: Verify API key domain restrictions in GCP Console per FR-012 [#53]
+- [x] T032 Run `quickstart.md` validation scenarios end-to-end [#54]
 
 ---
 
