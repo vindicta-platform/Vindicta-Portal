@@ -40,6 +40,34 @@ Deployments are handled through the CI/CD pipeline. Merged PRs to `main` trigger
 - Use relative paths from HTML files
 - Optimize images before committing
 
+## 🔗 Pre-Commit Hooks (Required)
+
+All developers **must** install and run pre-commit hooks before committing. This ensures:
+- All markdown links are validated
+- Code quality standards are enforced
+
+### Setup
+
+1. Install pre-commit:
+   ```bash
+   pip install pre-commit
+   # or with uv:
+   uv pip install pre-commit
+   ```
+
+2. Install hooks in your local repo:
+   ```bash
+   pre-commit install
+   ```
+
+3. Hooks run automatically on `git commit`. To run manually:
+   ```bash
+   pre-commit run --all-files
+   ```
+
+> [!IMPORTANT]
+> PRs with failing pre-commit checks will be blocked. The CI pipeline enforces these checks as a safety net.
+
 ## License
 
 MIT License — See [LICENSE](https://github.com/vindicta-platform/Vindicta-Portal/blob/main/LICENSE)
