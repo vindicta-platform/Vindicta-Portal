@@ -331,14 +331,14 @@
 
         <!-- Filters -->
         <div class="event-filters">
-            <button class="filter-btn active">All Events</button>
-            <button class="filter-btn">🏆 Tournaments</button>
-            <button class="filter-btn">🎲 Game Nights</button>
-            <button class="filter-btn">🎨 Hobby</button>
+            <button class="filter-btn active" data-filter="all">All Events</button>
+            <button class="filter-btn" data-filter="tournament">🏆 Tournaments</button>
+            <button class="filter-btn" data-filter="game-night">🎲 Game Nights</button>
+            <button class="filter-btn" data-filter="hobby">🎨 Hobby</button>
         </div>
 
         <!-- Featured Event -->
-        <article class="event-card featured">
+        <article class="event-card featured" data-category="tournament">
             <div class="event-header">
                 <span class="event-date">📅 March 8-9, 2026</span>
                 <span class="event-type major">🏆 Major GT</span>
@@ -350,7 +350,7 @@
         </article>
 
         <!-- Monthly RTT -->
-        <article class="event-card">
+        <article class="event-card" data-category="tournament">
             <div class="event-header">
                 <span class="event-date">📅 February 15, 2026</span>
                 <span class="event-type tournament">🏆 Tournament</span>
@@ -362,7 +362,7 @@
         </article>
 
         <!-- Weekly Game Night -->
-        <article class="event-card">
+        <article class="event-card" data-category="game-night">
             <div class="event-header">
                 <span class="event-date">📅 Every Thursday</span>
                 <span class="event-type game-night">🎲 Game Night</span>
@@ -374,7 +374,7 @@
         </article>
 
         <!-- Painting Workshop -->
-        <article class="event-card">
+        <article class="event-card" data-category="hobby">
             <div class="event-header">
                 <span class="event-date">📅 February 22, 2026</span>
                 <span class="event-type hobby">🎨 Hobby</span>
@@ -386,7 +386,7 @@
         </article>
 
         <!-- New Player Night -->
-        <article class="event-card">
+        <article class="event-card" data-category="game-night">
             <div class="event-header">
                 <span class="event-date">📅 First Sunday of Each Month</span>
                 <span class="event-type game-night">🎲 Game Night</span>
@@ -406,6 +406,36 @@
         <p style="margin-top: 0.5rem;"><a href="../platform/"
                 style="color: var(--vindicta-gold); text-decoration: none;">Access the Platform →</a></p>
     </footer>
+
+    <!-- Event Filter Script -->
+    <script>
+        (function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const eventCards = document.querySelectorAll('.event-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active state on buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Get the filter category
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter the event cards
+                    eventCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
 
 </body>
 
