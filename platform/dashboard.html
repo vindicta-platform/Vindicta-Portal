@@ -476,8 +476,8 @@
             </div>
         </header>
 
-        <!-- Stats Grid -->
-        <div class="stats-grid">
+        <!-- Stats Grid - User View -->
+        <div class="stats-grid" data-view="user">
 
             <!-- Personal Balance -->
             <div class="stat-card primary">
@@ -530,8 +530,56 @@
 
         </div>
 
+        <!-- Stats Grid - Arbiter View (Initially Hidden) -->
+        <div class="stats-grid" data-view="admin" style="display: none;">
+
+            <!-- Platform Analytics -->
+            <div class="stat-card primary">
+                <div>
+                    <div class="stat-label">Total Platform Users</div>
+                    <div class="stat-value">
+                        <span class="stat-number">1,247</span>
+                    </div>
+                </div>
+                <div class="stat-footer positive">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    +12% This Month
+                </div>
+            </div>
+
+            <!-- API Usage -->
+            <div class="stat-card">
+                <div>
+                    <div class="stat-label">API Calls (24h)</div>
+                    <div class="stat-value">
+                        <span class="stat-number">45,821</span>
+                    </div>
+                </div>
+                <div class="stat-footer neutral">
+                    Rate Limit: 0.2% utilized
+                </div>
+            </div>
+
+            <!-- System Health -->
+            <div class="stat-card">
+                <div>
+                    <div class="stat-label">System Uptime</div>
+                    <div class="stat-value">
+                        <span class="stat-number">99.97</span>
+                        <span style="color: var(--text-muted); font-size: 1.5rem;">%</span>
+                    </div>
+                </div>
+                <div class="stat-footer positive">
+                    All Systems Operational
+                </div>
+            </div>
+
+        </div>
+
         <!-- Ledger Section -->
-        <div class="ledger-section">
+        <div class="ledger-section" data-view="all">
             <div class="ledger-header">
                 <h2>Immutable <span>Ledger</span></h2>
                 <span class="sync-badge">Real-time Sync Off-Chain</span>
