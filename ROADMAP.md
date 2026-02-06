@@ -102,6 +102,11 @@ Deliver the flagship web portal that unifies all Vindicta products — Army Grad
 | **Mobile Usability** | Works on 375px+ | Device testing |
 | **Page Load** | <2 seconds | Performance test |
 
+## Week 2: Core Features (Feb 11-17)
+- [ ] Firebase Auth Integration
+- [ ] List Grader MVP
+- [ ] Meta Snapshot Feature
+
 ### Exit Criteria
 - [ ] Deployed to Firebase Hosting
 - [ ] Dark mode with glassmorphism effects

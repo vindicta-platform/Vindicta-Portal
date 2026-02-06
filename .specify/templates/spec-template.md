@@ -4,6 +4,7 @@
 **Created**: [DATE]  
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
+**Compliance**: Rule 19 (Spec-First) Mandatory
 
 ## User Scenarios & Testing *(mandatory)*
 

@@ -1,4 +1,4 @@
-# [PROJECT NAME] Development Guidelines
+# [PROJECT NAME] Development Guidelines (Constitution v2.7.0-portal.1)
 
 Auto-generated from all feature plans. Last updated: [DATE]
 

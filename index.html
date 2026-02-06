@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Version: 1.0.1-ci-test -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Vindicta Portal - The Apex of Competitive Tabletop Wargaming. Access the Club or Platform.">
@@ -26,10 +27,24 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: #030305;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1520 25%, #12121a 50%, #0d1a1a 75%, #0a0a0f 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
             color: white;
             overflow: hidden;
             height: 100vh;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         /* ============================================
@@ -85,16 +100,9 @@
             }
         }
 
-        /* Grid Overlay */
+        /* Grid Overlay - Hidden for cleaner look */
         .grid-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 215, 0, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 215, 0, 0.02) 1px, transparent 1px);
-            background-size: 80px 80px;
-            animation: gridPulse 8s ease-in-out infinite;
+            display: none;
         }
 
         @keyframes gridPulse {
@@ -109,27 +117,27 @@
             }
         }
 
-        /* Radial Glows */
+        /* Radial Glows - Subtle */
         .glow-left {
             position: absolute;
             top: 50%;
-            left: 25%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, transparent 70%);
+            left: 20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.06) 0%, transparent 60%);
             transform: translate(-50%, -50%);
-            animation: pulseGlow 4s ease-in-out infinite;
+            animation: pulseGlow 6s ease-in-out infinite;
         }
 
         .glow-right {
             position: absolute;
             top: 50%;
-            right: 25%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            right: 20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 60%);
             transform: translate(50%, -50%);
-            animation: pulseGlow 4s ease-in-out infinite 2s;
+            animation: pulseGlowRight 6s ease-in-out infinite 3s;
         }
 
         @keyframes pulseGlow {
@@ -325,7 +333,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(10, 10, 15, 0.75);
             transition: all 0.5s;
         }
 
@@ -691,7 +699,13 @@
     </style>
 </head>
 
-<body>
+<body class="flags-loading">
+    <style>
+        /* Hide elements labeled with features until flags are ready */
+        .flags-loading [data-feature] {
+            visibility: hidden !important;
+        }
+    </style>
 
     <!-- ============================================
          BACKGROUND LAYERS
@@ -788,6 +802,33 @@
         </div>
     </footer>
 
+    <!-- Firebase Remote Config Initialization -->
+    <script type="module">
+        import { remoteConfig, analytics } from './assets/js/firebase-config.js';
+        import { REMOTE_CONFIG_DEFAULTS } from './assets/js/remote-config.defaults.js';
+        import { FeatureFlagService } from './assets/js/remote-config.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const flags = new FeatureFlagService(remoteConfig, REMOTE_CONFIG_DEFAULTS, analytics);
+            await flags.initialize();
+
+            // Make service available globally for simple UI interactions
+            window.vindictaFlags = flags;
+            console.log("Vindicta Portal: Remote Config Initialized");
+
+            // Auto-render override panel in development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                import('./assets/js/remote-config-overrides.js').then(module => {
+                    const overrides = new module.FeatureOverridePanel(flags);
+                    overrides.render();
+                });
+            }
+
+            // Dispatch event for other scripts that might depend on flags
+            document.body.classList.remove('flags-loading');
+            document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+        });
+    </script>
 </body>
 
 </html>

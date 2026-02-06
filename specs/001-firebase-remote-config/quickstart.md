@@ -61,61 +61,47 @@ export const REMOTE_CONFIG_DEFAULTS = {
 Create `assets/js/remote-config.js`:
 
 ```javascript
-import { fetchAndActivate, getValue } from 'firebase/remote-config';
-import { remoteConfig } from './firebase-config.js';
-import { REMOTE_CONFIG_DEFAULTS } from './remote-config.defaults.js';
+import { fetchAndActivate, getBoolean, getNumber, getString } from 'firebase/remote-config';
+import { setUserId, setUserProperties } from 'firebase/analytics';
 
-class FeatureFlagService {
-  constructor() {
-    this.initialized = false;
-    remoteConfig.defaultConfig = REMOTE_CONFIG_DEFAULTS;
+export class FeatureFlagService {
+  constructor(remoteConfig, defaults, analytics) {
+    this.remoteConfig = remoteConfig;
+    this.remoteConfig.defaultConfig = defaults;
+    this.analytics = analytics;
+    this.isInitialized = false;
   }
 
   async initialize() {
     try {
-      await fetchAndActivate(remoteConfig);
-      this.initialized = true;
-      console.log('[FeatureFlags] Remote config activated');
+      await fetchAndActivate(this.remoteConfig);
+      this.isInitialized = true;
+      console.log('Firebase: Remote config activated');
     } catch (error) {
-      console.warn('[FeatureFlags] Using defaults:', error.message);
+      console.warn('Firebase: Using defaults:', error.message);
     }
   }
 
-  getBoolean(key) {
-    return getValue(remoteConfig, key).asBoolean();
-  }
-
-  getNumber(key) {
-    return getValue(remoteConfig, key).asNumber();
-  }
-
-  getString(key) {
-    return getValue(remoteConfig, key).asString();
-  }
-
   isFeatureEnabled(featureName) {
-    return this.getBoolean(`feat_${featureName}_enabled`);
+    return getBoolean(this.remoteConfig, `feat_${featureName}_enabled`);
   }
 }
-
-export const featureFlags = new FeatureFlagService();
 ```
 
 ## 5. Initialize on Page Load
 
-Add to your HTML pages (before closing `</body>`):
+Add to your HTML pages:
 
 ```html
 <script type="module">
-  import { featureFlags } from './assets/js/remote-config.js';
-  
+  import { remoteConfig, analytics } from './assets/js/firebase-config.js';
+  import { REMOTE_CONFIG_DEFAULTS } from './assets/js/remote-config.defaults.js';
+  import { FeatureFlagService } from './assets/js/remote-config.js';
+
   document.addEventListener('DOMContentLoaded', async () => {
-    await featureFlags.initialize();
-    
-    // Example: Toggle dashboard visibility
-    if (featureFlags.isFeatureEnabled('new_dashboard')) {
-      document.getElementById('new-dashboard').style.display = 'block';
-    }
+    const flags = new FeatureFlagService(remoteConfig, REMOTE_CONFIG_DEFAULTS, analytics);
+    await flags.initialize();
+    window.vindictaFlags = flags; // Optional: Global access
   });
 </script>
 ```

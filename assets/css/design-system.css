@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
 /**
  * Vindicta Design System
  * Shared visual language for Club and Platform sections
@@ -300,8 +302,3 @@
     background: var(--vindicta-gold);
 }
 
-/* ============================================
-   FONT IMPORTS
-   ============================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
