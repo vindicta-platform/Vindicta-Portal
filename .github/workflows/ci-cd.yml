@@ -73,7 +73,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     if: failure() && github.event_name == 'pull_request'
+    continue-on-error: true
     permissions:
+      contents: read
       pull-requests: write
     steps:
       - name: Convert PR to Draft
@@ -91,5 +93,6 @@ jobs:
               });
               core.notice('PR converted to draft due to CI failure');
             } catch (error) {
-              core.warning(`Could not convert to draft: ${error.message}`);
+              // This mutation requires GitHub Pro/Team/Enterprise on some orgs
+              core.warning(`Could not convert to draft: ${error.message}. This feature may require GitHub Pro or higher.`);
             }
