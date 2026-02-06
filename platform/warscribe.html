@@ -583,6 +583,49 @@
             activeLink.classList.add('active');
         }
     </script>
+
+    <!-- Sidebar Active Indicator Script (Fix for Issue #5) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('.spec-content h2[id]');
+
+            // Create IntersectionObserver to track visible sections
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -50% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+
+                        // Remove active class from all links
+                        sidebarLinks.forEach(link => link.classList.remove('active'));
+
+                        // Add active class to matching link
+                        const activeLink = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all section headings
+            sections.forEach(section => observer.observe(section));
+
+            // Also handle click events for immediate feedback
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

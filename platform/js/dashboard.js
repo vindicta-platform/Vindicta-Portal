@@ -89,15 +89,33 @@ class Dashboard {
     }
 
     toggleView(e, view) {
-        document.querySelectorAll('.flex button').forEach(btn => {
-            btn.classList.remove('bg-amber-500', 'text-black');
-            btn.classList.add('text-gray-500');
-        });
-        e.target.classList.add('bg-amber-500', 'text-black');
-        e.target.classList.remove('text-gray-500');
+        // Update button states
+        const userBtn = document.getElementById('view-user');
+        const adminBtn = document.getElementById('view-admin');
 
+        userBtn.classList.remove('active');
+        adminBtn.classList.remove('active');
+        e.target.classList.add('active');
+
+        // Toggle content visibility based on data-view attribute
+        document.querySelectorAll('[data-view]').forEach(section => {
+            const sectionView = section.dataset.view;
+            if (sectionView === 'all' || sectionView === view) {
+                section.style.display = '';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // Show appropriate toast message
         if (view === 'admin') {
-            PortalUI.showToast("Elevating Privileges: Accessing Arbiter Metrics");
+            if (typeof PortalUI !== 'undefined' && PortalUI.showToast) {
+                PortalUI.showToast("Elevating Privileges: Accessing Arbiter Metrics");
+            }
+        } else {
+            if (typeof PortalUI !== 'undefined' && PortalUI.showToast) {
+                PortalUI.showToast("Standard User View Active");
+            }
         }
     }
 }

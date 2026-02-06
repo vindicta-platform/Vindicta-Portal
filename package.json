@@ -8,10 +8,11 @@
         "preview": "vite preview",
         "serve": "firebase serve --only hosting",
         "deploy": "vite build && firebase deploy --only hosting",
-        "test": "npx playwright test",
+        "test": "npm run test:unit && npm run test:e2e",
+        "test:unit": "vitest run",
+        "test:e2e": "npx playwright test",
         "test:headed": "npx playwright test --headed",
         "test:report": "npx playwright show-report",
-        "test:unit": "vitest run",
         "test:a11y": "npx playwright test --grep @a11y",
         "test:visual": "npx playwright test --update-snapshots"
     },
