@@ -629,7 +629,7 @@
         <p>© 2026 Vindicta Platform | <a href="../club/">Visit the Club</a></p>
     </footer>
 
-    <!-- Firebase Remote Config Initialization -->
+    <!-- Firebase Remote Config and View Toggle Initialization -->
     <script type="module">
         import { remoteConfig, analytics } from '../assets/js/firebase-config.js';
         import { REMOTE_CONFIG_DEFAULTS } from '../assets/js/remote-config.defaults.js';
@@ -641,7 +641,111 @@
             window.vindictaFlags = flags;
             document.body.classList.remove('flags-loading');
             document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+
+            // Issue #3: Check if dashboard access is enabled
+            const isDashboardEnabled = flags.isFeatureEnabled('new_dashboard');
+            if (!isDashboardEnabled) {
+                // Show access notice overlay when dashboard is not enabled
+                showAccessNotice();
+            }
+
+            // Issue #4: Setup view toggle functionality
+            setupViewToggle();
         });
+
+        /**
+         * Issue #3: Show access notice when dashboard is not enabled
+         */
+        function showAccessNotice() {
+            const notice = document.createElement('div');
+            notice.className = 'access-notice';
+            notice.innerHTML = `
+                <div class="access-notice-content">
+                    <div class="access-notice-icon">🔒</div>
+                    <h2>Dashboard Access Restricted</h2>
+                    <p>The Dashboard feature requires authentication to access. This feature is currently in development.</p>
+                    <a href="index.html" class="access-notice-btn">Return to Platform</a>
+                </div>
+            `;
+            notice.style.cssText = `
+                position: fixed;
+                inset: 0;
+                background: rgba(10, 10, 15, 0.98);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            const content = notice.querySelector('.access-notice-content');
+            content.style.cssText = `
+                text-align: center;
+                padding: 3rem;
+                max-width: 500px;
+            `;
+            notice.querySelector('.access-notice-icon').style.cssText = `
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
+            `;
+            notice.querySelector('h2').style.cssText = `
+                font-size: 2rem;
+                color: var(--vindicta-gold, #ffd700);
+                margin-bottom: 1rem;
+            `;
+            notice.querySelector('p').style.cssText = `
+                color: var(--text-secondary, #999);
+                margin-bottom: 2rem;
+                line-height: 1.7;
+            `;
+            notice.querySelector('.access-notice-btn').style.cssText = `
+                display: inline-block;
+                padding: 1rem 2rem;
+                background: var(--vindicta-gold, #ffd700);
+                color: #000;
+                text-decoration: none;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                border-radius: 4px;
+            `;
+            document.body.appendChild(notice);
+        }
+
+        /**
+         * Issue #4: Setup view toggle buttons
+         */
+        function setupViewToggle() {
+            const userBtn = document.getElementById('view-user');
+            const arbiterBtn = document.getElementById('view-admin');
+
+            if (!userBtn || !arbiterBtn) return;
+
+            userBtn.addEventListener('click', () => {
+                userBtn.classList.add('active');
+                arbiterBtn.classList.remove('active');
+                toggleViewSections('user');
+            });
+
+            arbiterBtn.addEventListener('click', () => {
+                arbiterBtn.classList.add('active');
+                userBtn.classList.remove('active');
+                toggleViewSections('arbiter');
+            });
+        }
+
+        /**
+         * Toggle visibility of view-specific sections
+         */
+        function toggleViewSections(view) {
+            const userSections = document.querySelectorAll('[data-view="user"]');
+            const arbiterSections = document.querySelectorAll('[data-view="arbiter"]');
+
+            userSections.forEach(el => {
+                el.style.display = view === 'user' ? '' : 'none';
+            });
+            arbiterSections.forEach(el => {
+                el.style.display = view === 'arbiter' ? '' : 'none';
+            });
+        }
     </script>
 </body>
 
