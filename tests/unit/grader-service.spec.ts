@@ -10,7 +10,7 @@ import {
     parseXmlList,
     validateListStructure,
     parseList
-} from '../assets/js/list-parser.js';
+} from '../../assets/js/list-parser.js';
 
 describe('detectListFormat', () => {
     it('returns "text" for plain text lists', () => {
