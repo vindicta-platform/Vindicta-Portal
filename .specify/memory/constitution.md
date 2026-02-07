@@ -3,7 +3,7 @@ Sync Impact Report: 2026-02-05
 Version change: [TEMPLATE] → v2.7.0-portal.1
 List of modified principles:
 - I. The Economic Prime Directive (Added)
-- II. Spec-Driven Methodology (Rule 19) (Added)
+- II. Spec-Driven Methodology (Specification Driven Development) (Added)
 - III. Generative Dice & Mechanical Fidelity (Added)
 - IV. Cognitive Deep Think Protocol (Added)
 - V. The No-Nag Policy & Debug Pivot (Added)
@@ -29,7 +29,7 @@ Follow-up TODOs:
 ### I. The Economic Prime Directive
 Operations MUST run on GCP Free Tier within the `vindicta-warhammer` project only. No standing monthly costs for the base system. AI costs MUST be isolated via a "Gas Tank" model using Gemini models.
 
-### II. Spec-Driven Methodology (Rule 19)
+### II. Spec-Driven Methodology (Specification Driven Development)
 No code without a Specification. Behavioral (BDD) and Technical (TDD) tests MUST fail before implementation begins. Red - Green - Refactor.
 
 ### III. Generative Dice & Mechanical Fidelity
@@ -76,6 +76,6 @@ All features MUST progress through the 9 core SDD workflows: Constitution → Sp
 4. **Security**: No secrets in code/logs.
 
 ## Governance
-This constitution supersedes all other practices. Amendments require a version bump and notification to the platform lead. All PRs must verify compliance with Rule 19 and the Async-First Mandate.
+This constitution supersedes all other practices. Amendments require a version bump and notification to the platform lead. All PRs must verify compliance with Specification Driven Development and the Async-First Mandate.
 
 **Version**: v2.7.0-portal.1 | **Ratified**: 2026-02-05 | **Last Amended**: 2026-02-05

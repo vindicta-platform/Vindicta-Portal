@@ -9,6 +9,13 @@ Auto-generated from all feature plans. Last updated: 2026-02-01
 - Firebase SDK v10+ (App, Remote-Config, Analytics)
 - GitHub Actions (CI/CD Pipeline)
 
+## MCP Usage Rules
+
+- **Priority**: Always check for available MCP servers before using CLI tools or manual scripts.
+- **Mandatory**: For all GitHub, GCP, or Firebase operations, utilize the corresponding MCP tools (e.g., `github-mcp-server`, `cloudrun`, `firebase-mcp-server`).
+- **Forbidden**: MUST NOT use `gh` CLI or `gcloud` commands if an MCP tool can perform the same action.
+
+
 ## Project Structure
 
 ```text

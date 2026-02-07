@@ -23,7 +23,7 @@
 ## [Category 1]
 
 - [ ] CHK001 First checklist item with clear action
-- [ ] CHK002 Constitution Compliance: Verify alignment with Rule 19 and Async-First mandate.
+- [ ] CHK002 Constitution Compliance: Verify alignment with Specification Driven Development and Async-First mandate.
 - [ ] CHK003 Third checklist item
 
 ## [Category 2]
