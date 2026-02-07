@@ -1,213 +1,174 @@
 /**
  * LIST PARSER MODULE
- * T003: Parses army lists from text and BattleScribe XML formats
+ * T006: Parses army list text (plain text or XML) into structured data
  */
 
 /**
- * Detect the format of the input (text or XML)
- * @param {string} input - Raw input string
- * @returns {'text' | 'xml' | 'unknown'}
+ * Detect the format of an army list string
+ * @param {string} input - Raw army list text
+ * @returns {'text'|'xml'|'unknown'} Detected format
  */
 export function detectListFormat(input) {
-    if (!input || typeof input !== 'string') {
+    if (!input || typeof input !== 'string' || input.trim().length === 0) {
         return 'unknown';
     }
 
     const trimmed = input.trim();
 
-    // Check for XML markers
-    if (trimmed.startsWith('<?xml') || trimmed.startsWith('<roster') || trimmed.startsWith('<catalogue')) {
+    // Check for XML declaration or roster element
+    if (trimmed.startsWith('<?xml') || trimmed.startsWith('<roster')) {
         return 'xml';
     }
 
-    // Check for common BattleScribe XML patterns
-    if (trimmed.includes('<selection ') || trimmed.includes('<cost ')) {
-        return 'xml';
-    }
-
-    // Default to text format
     return 'text';
 }
 
 /**
  * Parse a plain text army list
  * @param {string} text - Raw text list
- * @returns {Object} Parsed list structure
+ * @returns {Object} Parsed list result
  */
 export function parseTextList(text) {
-    if (!text || typeof text !== 'string') {
-        return { error: 'Invalid input: empty or not a string', valid: false };
+    if (!text || typeof text !== 'string' || text.trim().length === 0) {
+        return { valid: false, error: 'Invalid input: expected non-empty string' };
     }
 
-    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    const lines = text.trim().split('\n');
+    const units = [];
+    let faction = null;
+    let totalPoints = 0;
 
-    if (lines.length === 0) {
-        return { error: 'Invalid input: no content found', valid: false };
-    }
-
-    const result = {
-        valid: true,
-        faction: null,
-        points: 0,
-        units: [],
-        rawText: text
-    };
-
-    // Common faction patterns
-    const factionPatterns = [
-        /^(Space Marines|Adeptus Astartes)/i,
-        /^(Chaos Space Marines|Heretic Astartes)/i,
-        /^(Aeldari|Craftworlds|Drukhari)/i,
-        /^(Orks|Ork)/i,
-        /^(Tyranids|Hive Fleet)/i,
-        /^(Necrons)/i,
-        /^(T'au Empire|Tau)/i,
-        /^(Imperial Guard|Astra Militarum)/i,
-        /^(Adeptus Mechanicus)/i,
-        /^(Death Guard)/i,
-        /^(Thousand Sons)/i,
-        /^(World Eaters)/i,
-        /^(Imperial Knights)/i,
-        /^(Chaos Knights)/i,
-        /^(Agents of the Imperium)/i,
-        /^(Genestealer Cults)/i,
-        /^(Leagues of Votann)/i,
+    // Points regex patterns: [100 pts], (150pts), [200 points]
+    const pointsPatterns = [
+        /\[(\d+)\s*(?:pts|points)\]/i,
+        /\((\d+)\s*(?:pts|points)\)/i,
     ];
 
-    // Points pattern: "2000 pts", "2000pts", "2,000 points"
-    const pointsPattern = /(\d{1,2},?\d{3})\s*(pts?|points?)/i;
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line || line.startsWith('#')) continue;
 
-    // Unit pattern: looks for lines with points values
-    const unitPattern = /^(.+?)\s*[\[\(]?\s*(\d+)\s*(pts?|points?)[\]\)]?\s*$/i;
+        let points = null;
+        for (const pattern of pointsPatterns) {
+            const match = line.match(pattern);
+            if (match) {
+                points = parseInt(match[1], 10);
+                break;
+            }
+        }
 
-    for (const line of lines) {
-        // Try to detect faction
-        if (!result.faction) {
-            for (const pattern of factionPatterns) {
-                if (pattern.test(line)) {
-                    result.faction = line.replace(/[-:]/g, '').trim();
+        if (i === 0 && !points) {
+            // First line without points is likely the faction
+            faction = line.replace(/\[.*?\]/g, '').trim();
+            // Check if first line also has points (faction line with total)
+            for (const pattern of pointsPatterns) {
+                const match = line.match(pattern);
+                if (match) {
+                    totalPoints = parseInt(match[1], 10);
+                    faction = line.replace(pattern, '').trim();
                     break;
                 }
             }
+            continue;
         }
 
-        // Try to extract total points
-        const pointsMatch = line.match(pointsPattern);
-        if (pointsMatch && result.points === 0) {
-            result.points = parseInt(pointsMatch[1].replace(',', ''), 10);
-        }
-
-        // Try to parse unit lines
-        const unitMatch = line.match(unitPattern);
-        if (unitMatch) {
-            result.units.push({
-                name: unitMatch[1].trim(),
-                points: parseInt(unitMatch[2], 10)
-            });
+        if (points !== null) {
+            const name = line
+                .replace(/\[.*?\]/g, '')
+                .replace(/\(.*?\)/g, '')
+                .trim();
+            units.push({ name, points });
         }
     }
 
-    // If no faction detected, use first non-empty line as faction guess
-    if (!result.faction && lines.length > 0) {
-        result.faction = lines[0].substring(0, 50);
+    // Sum unit points if total not explicitly provided
+    if (totalPoints === 0 && units.length > 0) {
+        totalPoints = units.reduce((sum, u) => sum + u.points, 0);
     }
 
-    // If no total points found, sum unit points
-    if (result.points === 0 && result.units.length > 0) {
-        result.points = result.units.reduce((sum, u) => sum + u.points, 0);
-    }
-
-    return result;
+    return {
+        valid: true,
+        faction,
+        points: totalPoints,
+        units,
+        rawText: text,
+    };
 }
 
 /**
- * Parse BattleScribe XML roster
+ * Parse an XML (BattleScribe) army list
  * @param {string} xml - Raw XML string
- * @returns {Object} Parsed list structure
+ * @returns {Object} Parsed list result
  */
 export function parseXmlList(xml) {
+    if (!xml || typeof xml !== 'string') {
+        return { valid: false, error: 'Invalid input: expected XML string' };
+    }
+
     try {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(xml, 'application/xml');
+        const parser = typeof DOMParser !== 'undefined'
+            ? new DOMParser()
+            : null;
 
-        const parserError = doc.querySelector('parsererror');
-        if (parserError) {
-            return { error: 'Invalid XML format', valid: false };
+        if (!parser) {
+            return { valid: false, error: 'XML parsing not available in this environment' };
         }
 
+        const doc = parser.parseFromString(xml, 'text/xml');
         const roster = doc.querySelector('roster');
+
         if (!roster) {
-            return { error: 'No roster element found', valid: false };
+            return { valid: false, error: 'No roster element found in XML' };
         }
 
-        const result = {
+        const name = roster.getAttribute('name') || 'Unknown';
+
+        return {
             valid: true,
-            faction: roster.getAttribute('name') || 'Unknown',
+            faction: name,
             points: 0,
             units: [],
-            rawXml: xml
+            rawXml: xml,
         };
-
-        // Get total points from costs
-        const costs = roster.querySelectorAll('cost[name="pts"], cost[name="Points"]');
-        costs.forEach(cost => {
-            const value = parseFloat(cost.getAttribute('value') || '0');
-            result.points += value;
-        });
-
-        // Get selections (units)
-        const selections = roster.querySelectorAll('selection[type="model"], selection[type="unit"]');
-        selections.forEach(sel => {
-            const name = sel.getAttribute('name');
-            const costEl = sel.querySelector('cost[name="pts"], cost[name="Points"]');
-            const points = costEl ? parseFloat(costEl.getAttribute('value') || '0') : 0;
-
-            if (name) {
-                result.units.push({ name, points: Math.round(points) });
-            }
-        });
-
-        return result;
-    } catch (e) {
-        return { error: `XML parsing error: ${e.message}`, valid: false };
+    } catch (error) {
+        return { valid: false, error: `XML parse error: ${error.message}` };
     }
 }
 
 /**
- * Validate parsed list structure
+ * Validate the structure of a parsed list
  * @param {Object} parsed - Parsed list object
  * @returns {Object} Validation result with isValid and errors
  */
 export function validateListStructure(parsed) {
-    const errors = [];
-
-    if (!parsed || !parsed.valid) {
-        return { isValid: false, errors: [parsed?.error || 'Invalid list structure'] };
+    if (!parsed || typeof parsed !== 'object') {
+        return { isValid: false, errors: ['Invalid parsed list object'] };
     }
+
+    const errors = [];
 
     if (!parsed.faction) {
         errors.push('Could not detect faction');
     }
 
-    if (parsed.points === 0) {
+    if (!parsed.points || parsed.points <= 0) {
         errors.push('Could not determine points total');
     }
 
-    if (parsed.units.length === 0) {
+    if (!parsed.units || !Array.isArray(parsed.units) || parsed.units.length === 0) {
         errors.push('No units detected in list');
     }
 
     return {
         isValid: errors.length === 0,
         errors,
-        warnings: errors.length > 0 ? ['List may not grade accurately due to parsing issues'] : []
     };
 }
 
 /**
- * Main parsing entry point
- * @param {string} input - Raw list input (text or XML)
- * @returns {Object} Parsed and validated list
+ * Main entry point: detect format, parse, and validate
+ * @param {string} input - Raw army list text or XML
+ * @returns {Object} Complete parsed and validated result
  */
 export function parseList(input) {
     const format = detectListFormat(input);
@@ -215,8 +176,15 @@ export function parseList(input) {
     let parsed;
     if (format === 'xml') {
         parsed = parseXmlList(input);
-    } else {
+    } else if (format === 'text') {
         parsed = parseTextList(input);
+    } else {
+        return {
+            valid: false,
+            format: 'unknown',
+            error: 'Could not detect list format',
+            validation: { isValid: false, errors: ['Unknown format'] },
+        };
     }
 
     const validation = validateListStructure(parsed);
@@ -224,6 +192,6 @@ export function parseList(input) {
     return {
         ...parsed,
         format,
-        validation
+        validation,
     };
 }
