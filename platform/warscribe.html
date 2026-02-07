@@ -507,7 +507,7 @@
         <p>© 2026 Vindicta Platform | <a href="../club/">Visit the Club</a></p>
     </footer>
 
-    <!-- Firebase Remote Config Initialization -->
+    <!-- Firebase Remote Config and Sidebar Initialization -->
     <script type="module">
         import { remoteConfig, analytics } from '../assets/js/firebase-config.js';
         import { REMOTE_CONFIG_DEFAULTS } from '../assets/js/remote-config.defaults.js';
@@ -519,7 +519,69 @@
             window.vindictaFlags = flags;
             document.body.classList.remove('flags-loading');
             document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
+
+            // Issue #5: Setup sidebar active indicator functionality
+            setupSidebarNavigation();
         });
+
+        /**
+         * Issue #5: Setup sidebar navigation with click handlers and scroll-spy
+         */
+        function setupSidebarNavigation() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = [];
+
+            // Collect all sections that correspond to sidebar links
+            sidebarLinks.forEach(link => {
+                const targetId = link.getAttribute('href')?.replace('#', '');
+                if (targetId) {
+                    const section = document.getElementById(targetId);
+                    if (section) {
+                        sections.push({ id: targetId, element: section, link: link });
+                    }
+                }
+            });
+
+            // Click handler - update active state immediately on click
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    updateActiveLink(link);
+                });
+            });
+
+            // Scroll-spy using IntersectionObserver
+            if (sections.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-100px 0px -50% 0px',
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const matchingSection = sections.find(s => s.element === entry.target);
+                            if (matchingSection) {
+                                updateActiveLink(matchingSection.link);
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => {
+                    observer.observe(section.element);
+                });
+            }
+        }
+
+        /**
+         * Update the active class on sidebar links
+         */
+        function updateActiveLink(activeLink) {
+            const allLinks = document.querySelectorAll('.sidebar-nav a');
+            allLinks.forEach(link => link.classList.remove('active'));
+            activeLink.classList.add('active');
+        }
     </script>
 
     <!-- Sidebar Active Indicator Script (Fix for Issue #5) -->
