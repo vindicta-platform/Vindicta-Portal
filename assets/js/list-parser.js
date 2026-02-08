@@ -57,7 +57,7 @@ export function parseTextList(text) {
             }
         }
 
-        if (i === 0 && !points) {
+        if (i === 0) {
             // First line without points is likely the faction
             faction = line.replace(/\[.*?\]/g, '').trim();
             // Check if first line also has points (faction line with total)
