@@ -456,6 +456,22 @@
 </head>
 
 <body>
+    <script>
+        // Immediate check to satisfy tests and avoid flicker
+        (function () {
+            if (localStorage.getItem('vindicta_beta') === 'false') {
+                document.documentElement.classList.add('hide-features');
+                window.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('[data-feature]').forEach(el => el.remove());
+                });
+            }
+        })();
+    </script>
+    <style>
+        .hide-features [data-feature] {
+            display: none !important;
+        }
+    </style>
     <header>
         <!-- Animated Background -->
         <div class="grid-bg"></div>
