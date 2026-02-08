@@ -52,11 +52,13 @@ test.describe('WARScribe Sidebar Active Indicator (Issue #5)', () => {
     });
 
     test('should update active indicator when scrolling to different sections', async ({ page }) => {
-        // Scroll to Validators section
-        await page.locator('#validators').scrollIntoViewIfNeeded();
+        // Scroll to Validators section using JS for reliability in headless mode
+        await page.evaluate(() => {
+            document.querySelector('#validators')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+        });
 
-        // Wait for IntersectionObserver to update
-        await page.waitForTimeout(200);
+        // Wait for IntersectionObserver to update (needs more time in headless)
+        await page.waitForTimeout(500);
 
         const validatorsLink = page.locator('.sidebar-nav a[href="#validators"]');
         await expect(validatorsLink).toHaveClass(/active/);

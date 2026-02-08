@@ -302,3 +302,76 @@
     background: var(--vindicta-gold);
 }
 
+
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
+
+.mobile-nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: var(--z-modal);
+    padding: var(--space-sm);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: var(--z-dropdown);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.mobile-nav-links a {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color var(--transition-normal);
+}
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a.active {
+    color: var(--vindicta-gold);
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    /* Hide desktop nav */
+    nav ul:not(.mobile-nav-links) {
+        display: none;
+    }
+}

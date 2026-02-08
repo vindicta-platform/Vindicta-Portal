@@ -439,7 +439,22 @@
             <li><a href="partners.html">Partners</a></li>
             <li><a href="join.html">Join Us</a></li>
         </ul>
+        <button class="mobile-nav-toggle" aria-label="Toggle Menu">☰</button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="join.html">Join Us</a></li>
+        </ul>
+        <button class="mobile-nav-toggle" style="position: absolute; top: 1rem; right: 2rem;"
+            aria-label="Close Menu">✕</button>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -539,6 +554,25 @@
             await flags.initialize();
             window.vindictaFlags = flags;
             console.log("Vindicta Club: Remote Config Initialized");
+
+            // Mobile Menu Logic
+            const mobileToggle = document.querySelectorAll('.mobile-nav-toggle');
+            const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+
+            mobileToggle.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    mobileOverlay.classList.toggle('active');
+                });
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileOverlay.classList.remove('active');
+                });
+            });
+
             document.dispatchEvent(new CustomEvent('vindicta:flags:ready', { detail: flags }));
         });
     </script>
